@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ganado Analytics</title>
+<style>
+:root{--bg:#f5f7f4;--panel:#fff;--ink:#17211b;--muted:#6d786f;--line:#e1e7e2;--green:#2f6b45;--green2:#4e8b61;--soft:#e9f1eb;--red:#b94a48;--amber:#a96c18}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit}.app{min-height:100vh}.side{position:fixed;left:0;top:0;bottom:0;width:235px;background:#173021;color:#eaf3ed;padding:22px 16px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;padding:0 8px 26px}.brand img{width:44px;height:44px;border-radius:10px;object-fit:cover}.brand span span{color:#91c29c}.nav button{display:block;width:100%;border:0;background:transparent;color:#c9d8ce;text-align:left;padding:12px;border-radius:10px;margin:4px 0;cursor:pointer}.nav button.active,.nav button:hover{background:#2a4b35;color:#fff}.main{margin-left:235px;padding:28px 34px}.section{display:none}.section.active{display:block}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.top h1{margin:0;font-size:28px}.top p{margin:5px 0 0;color:var(--muted)}.badge{background:var(--soft);color:var(--green);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card,.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 25px rgba(31,52,39,.06)}.card{padding:18px}.label{font-size:13px;color:var(--muted)}.value{font-size:27px;font-weight:800;margin:8px 0}.trend{font-size:12px;color:var(--green)}.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:15px;margin-top:15px}.panel{padding:20px}.panel h3{margin:0 0 15px;font-size:16px}.chart{height:230px}.chart svg{width:100%;height:100%}.row{margin:15px 0}.rowhead{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}.barbg{height:9px;background:#edf1ed;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--green2);border-radius:99px}.filters{display:flex;gap:10px;margin:18px 0}.filters input,.filters select,.field input,.field select{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:9px;outline:none}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}.table th{color:var(--muted)}.pill{padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700}.good{background:#e7f3e9;color:var(--green)}.mid{background:#fff3dc;color:#956018}.low{background:#fbe8e7;color:#a23e3b}.primary,.secondary,.back{border-radius:9px;padding:9px 13px;cursor:pointer}.primary{border:0;background:var(--green);color:#fff;font-weight:700}.secondary{border:1px solid var(--line);background:#fff}.back{border:0;background:var(--soft);color:var(--green)}.animal{cursor:pointer}.animal:hover td{background:#fafcf9}.profile{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.mini{padding:15px;background:#fafcf9;border:1px solid var(--line);border-radius:12px}.mini b{display:block;font-size:20px;margin-top:5px}.modal{position:fixed;inset:0;background:rgba(17,31,22,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.open{display:flex}.modalbox{width:min(620px,100%);background:#fff;border-radius:18px;padding:24px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modalhead h3{margin:0}.close{border:0;background:transparent;font-size:23px;cursor:pointer}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input,.field select{width:100%}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+@media(max-width:900px){.side{width:72px}.brand{font-size:0}.brand:after{content:"🐄";font-size:23px}.brand img{display:none}.main{margin-left:72px;padding:20px}.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:600px){.main{padding:14px}.cards,.profile,.formgrid{grid-template-columns:1fr 1fr}.top h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand"><img src="logo.jpg" alt="Logo"><span>Ganado <span>Analytics</span></span></div>
+  <nav class="nav">
+    <button class="active" data-section="dashboard">▦ &nbsp; Dashboard</button>
+    <button data-section="animales">🐄 &nbsp; Animales</button>
+    <button data-section="lotes">▤ &nbsp; Lotes</button>
+    <button data-section="pesajes">⚖ &nbsp; Pesajes</button>
+    <button data-section="analisis">◒ &nbsp; Análisis</button>
+    <button data-section="alertas">🔔 &nbsp; Alertas</button>
+  </nav>
+</aside>
+<main class="main">
+<section id="dashboard" class="section active">
+<div class="top"><div><h1>Rendimiento ganadero</h1><p>Dashboard actualizado automáticamente con tus animales</p></div><span class="badge">● Datos locales</span></div>
+<div class="cards">
+<div class="card"><div class="label">Animales activos</div><div class="value" id="dashCount">0</div><div class="trend">Inventario actual</div></div>
+<div class="card"><div class="label">Peso promedio</div><div class="value" id="dashWeight">0 kg</div><div class="trend">Calculado automáticamente</div></div>
+<div class="card"><div class="label">GDP promedio</div><div class="value" id="dashGdp">0,00 kg/día</div><div class="trend">Rendimiento actual</div></div>
+<div class="card"><div class="label">Margen estimado</div><div class="value" id="dashMargin">$0 M</div><div class="trend">Estimación del inventario</div></div>
+</div>
+<div class="grid">
+<div class="panel"><h3>Distribución de GDP</h3><div id="dashStatus"></div></div>
+<div class="panel"><h3>GDP por lote</h3><div id="dashLots"></div></div>
+</div>
+<div class="panel" style="margin-top:15px;border-left:4px solid #a96c18">
+<h3>Alertas prioritarias</h3>
+<div id="dashAlerts"></div>
+</div>
+<div class="panel" style="margin-top:15px"><h3>Animales de bajo rendimiento</h3><div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Lote</th><th>Peso</th><th>GDP</th><th>Estado</th></tr></thead><tbody id="reviewRows"></tbody></table></div></div>
+</section>
+
+<section id="animales" class="section">
+<div class="top"><div><h1>Animales</h1><p>Agrega y modifica el inventario</p></div><button class="primary" onclick="openAnimalForm()">+ Nuevo animal</button></div>
+<div class="panel"><div class="filters"><input id="search" placeholder="Buscar ID, raza o lote..." oninput="filterAnimals()"><select id="statusFilter" onchange="filterAnimals()"><option value="">Todos los estados</option><option value="good">Bueno</option><option value="mid">Medio</option><option value="low">Bajo</option></select></div>
+<div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Raza</th><th>Lote</th><th>Edad</th><th>Peso</th><th>GDP</th><th>Estado</th><th></th></tr></thead><tbody id="animalRows"></tbody></table></div></div>
+</section>
+
+<section id="lotes" class="section"><div class="top"><div><h1>Lotes</h1><p>Indicadores calculados desde los animales</p></div></div><div class="cards" id="lotCards"></div></section>
+
+<section id="pesajes" class="section"><div class="top"><div><h1>Pesajes</h1><p>Base para la evolución histórica</p></div></div><div class="panel"><table class="table"><thead><tr><th>Fecha</th><th>Animal</th><th>Lote</th><th>Peso</th><th>Variación</th></tr></thead><tbody id="weighRows"></tbody></table></div></section>
+
+<section id="analisis" class="section"><div class="top"><div><h1>Análisis</h1><p>Resumen de rendimiento</p></div></div><div class="cards" id="analysisCards"></div></section>
+
+
+<section id="alertas" class="section">
+<div class="top"><div><h1>Alertas</h1><p>Seguimiento de medicamentos y partos</p></div></div>
+<div class="cards">
+<div class="card"><div class="label">Medicamentos pendientes</div><div class="value" id="medAlertCount">0</div><div class="trend">Dosis o tratamientos próximos</div></div>
+<div class="card"><div class="label">Partos próximos</div><div class="value" id="birthAlertCount">0</div><div class="trend">Ventana de 14 días</div></div>
+<div class="card"><div class="label">Alertas hoy</div><div class="value" id="todayAlertCount">0</div><div class="trend">Requieren atención</div></div>
+</div>
+<div class="grid">
+<div class="panel"><h3>💊 Medicamentos</h3><div id="medAlerts"></div></div>
+<div class="panel"><h3>🐄 Partos próximos</h3><div id="birthAlerts"></div></div>
+</div>
+<div class="panel" style="margin-top:15px">
+<h3>Agregar / editar seguimiento</h3>
+<div class="formgrid">
+<div class="field"><label>Animal</label><select id="alertAnimal"></select></div>
+<div class="field"><label>Tipo</label><select id="alertType"><option value="med">Medicamento</option><option value="birth">Parto</option></select></div>
+<div class="field"><label>Fecha</label><input id="alertDate" type="date"></div>
+<div class="field"><label>Detalle</label><input id="alertDetail" placeholder="Ej. Vacuna / fecha probable de parto"></div>
+</div>
+<div class="actions"><button class="primary" onclick="saveAlert()">Guardar alerta</button></div>
+</div>
+</section>
+<section id="perfil" class="section"><div class="top"><div><button class="back" onclick="go('animales')">← Volver</button><h1 id="profileTitle" style="margin-top:14px"></h1><p id="profileSub"></p></div><button class="primary" onclick="editCurrentAnimal()">Editar animal</button></div><div class="profile"><div class="mini"><span class="label">Peso actual</span><b id="profileWeight"></b></div><div class="mini"><span class="label">Ganancia estimada</span><b id="profileGain"></b></div><div class="mini"><span class="label">GDP</span><b id="profileGdp"></b></div><div class="mini"><span class="label">Valor estimado</span><b id="profileCost"></b></div></div><div class="panel"><h3>Evolución de peso</h3><div class="chart"><svg viewBox="0 0 720 230" preserveAspectRatio="none"><polyline fill="none" stroke="#2f6b45" stroke-width="4" points="40,195 170,170 300,142 430,105 560,68 690,40"/><line x1="35" y1="200" x2="700" y2="200" stroke="#e8ece8"/></svg></div></div></section>
+</main></div>
+
+<div id="animalModal" class="modal"><div class="modalbox">
+<div class="modalhead"><h3 id="modalTitle">Nuevo animal</h3><button class="close" onclick="closeAnimalForm()">×</button></div>
+<div class="formgrid">
+<div class="field"><label>ID / Arete</label><input id="fId"></div>
+<div class="field"><label>Raza</label><select id="fBreed"><option>Brahman</option><option>Angus</option><option>Simmental</option><option>Brangus</option></select></div>
+<div class="field"><label>Lote</label><input id="fLot" placeholder="Lote 01"></div>
+<div class="field"><label>Edad (meses)</label><input id="fAge" type="number" min="0"></div>
+<div class="field"><label>Peso actual (kg)</label><input id="fWeight" type="number" min="0"></div>
+<div class="field"><label>GDP (kg/día)</label><input id="fGdp" type="number" min="0" step=".01"></div>
+</div>
+<div class="actions"><button class="secondary" onclick="closeAnimalForm()">Cancelar</button><button class="primary" onclick="saveAnimal()">Guardar cambios</button></div>
+</div></div>
+
+<script>
+const key="ganadoAnalyticsAnimalsV1";
+const breeds=["Brahman","Angus","Simmental","Brangus"];
+let currentAnimalId=null;
+let animals=JSON.parse(localStorage.getItem(key)||"null");
+if(!animals){
+  animals=[];
+  for(let i=1;i<=48;i++){
+    const g=[.91,.84,.78,.72,.64,.58][i%6], lot=((i-1)%8)+1;
+    animals.push({id:"GAN-"+String(i).padStart(4,"0"),breed:breeds[i%4],lot:"Lote "+String(lot).padStart(2,"0"),age:14+(i%18),weight:330+(i*7)%130,gdp:g});
+  }
+}
+const status=a=>a.gdp>=.75?"good":a.gdp>=.62?"mid":"low";
+function persist(){localStorage.setItem(key,JSON.stringify(animals))}
+function fmt(n,d=2){return Number(n).toFixed(d).replace(".",",")}
+
+const alertsKey="ganadoAnalyticsAlertsV1";
+let alerts=JSON.parse(localStorage.getItem(alertsKey)||"null");
+if(!alerts){
+  const today=new Date();
+  const iso=d=>{const x=new Date(d);return x.toISOString().slice(0,10)};
+  alerts=animals.slice(0,8).map((a,i)=>({
+    id:"ALT-"+String(i+1).padStart(3,"0"),
+    animalId:a.id,
+    type:i%2===0?"med":"birth",
+    date:iso(new Date(today.getTime()+((i%2===0?i-3:i+2)*86400000))),
+    detail:i%2===0?"Tratamiento veterinario":"Fecha probable de parto"
+  }));
+}
+function persistAlerts(){localStorage.setItem(alertsKey,JSON.stringify(alerts))}
+function daysUntil(date){
+  const a=new Date(); a.setHours(0,0,0,0);
+  const b=new Date(date+"T00:00:00"); b.setHours(0,0,0,0);
+  return Math.round((b-a)/86400000);
+}
+function alertLabel(x){
+  const d=daysUntil(x.date);
+  if(d<0) return "Vencida";
+  if(d===0) return "Hoy";
+  if(d===1) return "Mañana";
+  return "En "+d+" días";
+}
+function alertTone(x){
+  const d=daysUntil(x.date);
+  return d<=2?"low":d<=7?"mid":"good";
+}
+function renderAlerts(){
+  const med=alerts.filter(x=>x.type==="med").sort((a,b)=>a.date.localeCompare(b.date));
+  const birth=alerts.filter(x=>x.type==="birth").sort((a,b)=>a.date.localeCompare(b.date));
+  const urgent=alerts.filter(x=>daysUntil(x.date)<=2).length;
+  document.getElementById("medAlertCount").textContent=med.filter(x=>daysUntil(x.date)<=7).length;
+  document.getElementById("birthAlertCount").textContent=birth.filter(x=>daysUntil(x.date)<=14).length;
+  document.getElementById("todayAlertCount").textContent=urgent;
+  const render=(list)=>list.length?list.map(x=>{
+    const a=animals.find(y=>y.id===x.animalId);
+    return `<div class="row" style="padding:10px 0;border-bottom:1px solid var(--line)">
+      <div class="rowhead"><span><b>${a?a.id:x.animalId}</b> · ${x.detail}</span><span class="pill ${alertTone(x)}">${alertLabel(x)}</span></div>
+      <div class="label">${a?a.lot:""} · ${x.date}</div>
+    </div>`;
+  }).join(""):'<p class="label">Sin alertas registradas.</p>';
+  document.getElementById("medAlerts").innerHTML=render(med);
+  document.getElementById("birthAlerts").innerHTML=render(birth);
+  document.getElementById("dashAlerts").innerHTML=alerts.filter(x=>daysUntil(x.date)<=7).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,8).map(x=>{
+    const a=animals.find(y=>y.id===x.animalId);
+    const icon=x.type==="med"?"💊":"🐄";
+    return `<div class="row"><div class="rowhead"><span>${icon} <b>${a?a.id:x.animalId}</b> · ${x.detail}</span><span class="pill ${alertTone(x)}">${alertLabel(x)}</span></div><div class="label">${x.date}</div></div>`;
+  }).join("") || '<p class="label">No hay alertas para los próximos 7 días.</p>';
+  const sel=document.getElementById("alertAnimal");
+  if(sel) sel.innerHTML=animals.map(a=>`<option value="${a.id}">${a.id} · ${a.lot}</option>`).join("");
+}
+function saveAlert(){
+  const animalId=document.getElementById("alertAnimal").value;
+  const type=document.getElementById("alertType").value;
+  const date=document.getElementById("alertDate").value;
+  const detail=document.getElementById("alertDetail").value.trim() || (type==="med"?"Tratamiento veterinario":"Fecha probable de parto");
+  if(!animalId||!date){alert("Selecciona el animal y la fecha.");return}
+  alerts.push({id:"ALT-"+Date.now(),animalId,type,date,detail});
+  persistAlerts();renderAlerts();
+  document.getElementById("alertDetail").value="";
+}
+
+function renderAnimals(){
+ document.getElementById("animalRows").innerHTML=animals.map(a=>`<tr class="animal" data-status="${status(a)}" onclick="showAnimal('${a.id}')"><td>${a.id}</td><td>${a.breed}</td><td>${a.lot}</td><td>${a.age} meses</td><td>${a.weight} kg</td><td>${fmt(a.gdp)}</td><td><span class="pill ${status(a)}">${status(a)==="good"?"Bueno":status(a)==="mid"?"Medio":"Bajo"}</span></td><td><button class="secondary" onclick="event.stopPropagation();editAnimal('${a.id}')">Editar</button></td></tr>`).join("");
+}
+function filterAnimals(){
+ const q=document.getElementById("search").value.toLowerCase(), s=document.getElementById("statusFilter").value;
+ document.querySelectorAll("#animalRows tr").forEach(r=>r.style.display=(!s||r.dataset.status===s)&&r.innerText.toLowerCase().includes(q)?"":"none");
+}
+function updateDashboard(){
+ const n=animals.length, avgW=n?animals.reduce((s,a)=>s+a.weight,0)/n:0, avgG=n?animals.reduce((s,a)=>s+a.gdp,0)/n:0;
+ const margin=animals.reduce((s,a)=>s+a.weight,0)*5100/1000000;
+ document.getElementById("dashCount").textContent=n;
+ document.getElementById("dashWeight").textContent=Math.round(avgW)+" kg";
+ document.getElementById("dashGdp").textContent=fmt(avgG)+" kg/día";
+ document.getElementById("dashMargin").textContent="$"+fmt(margin,1)+" M";
+ const good=animals.filter(a=>status(a)==="good").length,mid=animals.filter(a=>status(a)==="mid").length,low=n-good-mid;
+ document.getElementById("dashStatus").innerHTML=[["Sobre objetivo",good,"good"],["En seguimiento",mid,"mid"],["Requiere revisión",low,"low"]].map(x=>`<div class="row"><div class="rowhead"><span>${x[0]}</span><b>${n?Math.round(x[1]/n*100):0}%</b></div><div class="barbg"><div class="bar" style="width:${n?x[1]/n*100:0}%"></div></div></div>`).join("");
+ const groups={}; animals.forEach(a=>{groups[a.lot]??={n:0,g:0};groups[a.lot].n++;groups[a.lot].g+=a.gdp});
+ const lots=Object.entries(groups).sort((a,b)=>b[1].g/b[1].n-a[1].g/b[1].n).slice(0,6);
+ document.getElementById("dashLots").innerHTML=lots.map(([lot,x])=>{let g=x.g/x.n;return `<div class="row"><div class="rowhead"><span>${lot} · ${x.n} animales</span><b>${fmt(g)}</b></div><div class="barbg"><div class="bar" style="width:${Math.min(g/1.1*100,100)}%"></div></div></div>`}).join("");
+ document.getElementById("reviewRows").innerHTML=animals.filter(a=>status(a)==="low").sort((a,b)=>a.gdp-b.gdp).slice(0,8).map(a=>`<tr class="animal" onclick="showAnimal('${a.id}')"><td>${a.id}</td><td>${a.lot}</td><td>${a.weight} kg</td><td>${fmt(a.gdp)}</td><td><span class="pill low">Bajo</span></td></tr>`).join("")||`<tr><td colspan="5">No hay animales en revisión.</td></tr>`;
+ updateLotes(); updateAnalysis();
+}
+function updateLotes(){
+ const groups={};animals.forEach(a=>{groups[a.lot]??={n:0,w:0,g:0};groups[a.lot].n++;groups[a.lot].w+=a.weight;groups[a.lot].g+=a.gdp});
+ document.getElementById("lotCards").innerHTML=Object.entries(groups).map(([lot,x])=>`<div class="card"><div class="label">${lot}</div><div class="value">${fmt(x.g/x.n)} <small style="font-size:12px;color:#6d786f">kg/día</small></div><div class="label">${x.n} animales · ${Math.round(x.w/x.n)} kg promedio</div></div>`).join("");
+}
+function updateAnalysis(){
+ const n=animals.length,avgG=n?animals.reduce((s,a)=>s+a.gdp,0)/n:0;
+ document.getElementById("analysisCards").innerHTML=[
+ ["Ganancia diaria promedio",fmt(avgG)+" kg/día","Meta: 0,75 kg/día"],
+ ["Animales sobre objetivo",n?Math.round(animals.filter(a=>a.gdp>=.75).length/n*100):0+"%","GDP ≥ 0,75 kg/día"],
+ ["Peso promedio",n?Math.round(animals.reduce((s,a)=>s+a.weight,0)/n):0+" kg","Inventario actual"],
+ ["Animales en revisión",animals.filter(a=>status(a)==="low").length,"GDP < 0,62 kg/día"]
+ ].map(x=>`<div class="card"><div class="label">${x[0]}</div><div class="value">${x[1]}</div><div class="trend">${x[2]}</div></div>`).join("");
+}
+function showAnimal(id){
+ const a=animals.find(x=>x.id===id); if(!a)return; currentAnimalId=id;
+ document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+ document.getElementById("perfil").classList.add("active");
+ document.getElementById("profileTitle").textContent=a.id;
+ document.getElementById("profileSub").textContent=`${a.breed} · ${a.lot} · ${a.age} meses`;
+ document.getElementById("profileWeight").textContent=a.weight+" kg";
+ document.getElementById("profileGain").textContent=Math.round(a.gdp*150)+" kg";
+ document.getElementById("profileGdp").textContent=fmt(a.gdp)+" kg/día";
+ document.getElementById("profileCost").textContent="$"+fmt(a.weight*0.0128,2)+" M";
+}
+function openAnimalForm(id=null){
+ currentAnimalId=id;document.getElementById("animalModal").classList.add("open");document.getElementById("modalTitle").textContent=id?"Editar animal":"Nuevo animal";
+ const a=id?animals.find(x=>x.id===id):{id:"GAN-"+String(animals.length+1).padStart(4,"0"),breed:"Brahman",lot:"Lote 01",age:18,weight:380,gdp:.75};
+ ["fId","fBreed","fLot","fAge","fWeight","fGdp"].forEach((k,i)=>document.getElementById(k).value=[a.id,a.breed,a.lot,a.age,a.weight,a.gdp][i]);
+}
+function editAnimal(id){openAnimalForm(id)}
+function editCurrentAnimal(){if(currentAnimalId)openAnimalForm(currentAnimalId)}
+function closeAnimalForm(){document.getElementById("animalModal").classList.remove("open")}
+function saveAnimal(){
+ const id=document.getElementById("fId").value.trim(); if(!id){alert("El ID es obligatorio");return}
+ const a={id,breed:document.getElementById("fBreed").value,lot:document.getElementById("fLot").value.trim()||"Lote 01",age:Number(document.getElementById("fAge").value)||0,weight:Number(document.getElementById("fWeight").value)||0,gdp:Number(document.getElementById("fGdp").value)||0};
+ const i=animals.findIndex(x=>x.id===currentAnimalId); if(i>=0)animals[i]=a;else animals.unshift(a);
+ persist();renderAnimals();updateDashboard();renderAlerts();closeAnimalForm();showAnimal(id);
+}
+function go(id){document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{go(b.dataset.section);document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active")});
+document.getElementById("weighRows").innerHTML=Array.from({length:12},(_,i)=>{let a=animals[i];return `<tr><td>${String(22-i).padStart(2,"0")}/09/2026</td><td>${a.id}</td><td>${a.lot}</td><td>${a.weight} kg</td><td>+${fmt(a.gdp*30,1)} kg</td></tr>`}).join("");
+renderAnimals();updateDashboard();renderAlerts();
+</script>
+</body></html>
