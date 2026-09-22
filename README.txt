@@ -1,14 +1,9 @@
-GANADO ANALYTICS V4
-
-Novedades:
-- Los animales tienen ID y nombre.
-- Al cambiar el nombre, los registros históricos siguen ligados al mismo animal y muestran automáticamente el nombre nuevo.
-- Se puede eliminar un animal y se eliminan sus registros asociados.
-- Dashboard automático.
-- Lechería y control de litros.
-- Historial de pesajes.
-- Panel de alertas.
-- Datos guardados en localStorage del navegador.
-
-PUBLICACIÓN:
-Sube index.html al repositorio conectado a Vercel.
+GANADO ANALYTICS V6
+Base: V4 funcional.
+Nuevos módulos:
+- Calendario ganadero
+- Comparador de animales (hasta 5)
+- Historial de crecimiento con gráfico
+- Ficha 360° del animal
+- Fotografía del animal (guardada localmente en el navegador)
+Se conservan animales, edición, eliminación, pesajes, lechería, alertas y control sanitario.

@@ -9,6 +9,8 @@
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
 button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.side{width:235px;background:#173021;color:#eaf3ed;padding:24px 16px;position:fixed;inset:0 auto 0 0}.brand{font-size:20px;font-weight:800;padding:0 10px 28px}.brand span{color:#91c29c}.nav button{display:block;width:100%;border:0;background:transparent;color:#c9d8ce;text-align:left;padding:12px;border-radius:10px;margin:4px 0;cursor:pointer}.nav button.active,.nav button:hover{background:#2a4b35;color:#fff}.main{margin-left:235px;width:calc(100% - 235px);padding:28px 34px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.top h1{margin:0;font-size:28px}.top p{margin:5px 0 0;color:var(--muted)}.badge{background:var(--soft);color:var(--green);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.card{padding:18px}.label{font-size:13px;color:var(--muted)}.value{font-size:28px;font-weight:800;margin:8px 0}.trend{font-size:12px;color:var(--green)}.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:16px}.panel{padding:20px}.panel h3{margin:0 0 16px;font-size:16px}.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.filters input,.filters select,.form input,.form select,.form textarea{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:10px;outline:none;width:100%}.filters input{max-width:320px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}.table th{color:var(--muted);font-weight:600}.pill{padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700}.good{background:#e7f3e9;color:#2f6b45}.mid{background:#fff3dc;color:#9a651b}.low{background:#fbe8e7;color:#a23e3b}.warn{background:#fff3dc;color:#9a651b}.danger{background:#fbe8e7;color:#a23e3b}.ok{background:#e7f3e9;color:#2f6b45}.animal{cursor:pointer}.animal:hover td{background:#fafcf9}.section{display:none}.section.active{display:block}.btn{border:0;padding:9px 12px;border-radius:9px;cursor:pointer;font-weight:700}.btn.primary{background:var(--green);color:#fff}.btn.soft{background:var(--soft);color:var(--green)}.btn.danger{background:#fbe8e7;color:#a23e3b}.actions{display:flex;gap:8px;flex-wrap:wrap}.profile{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.mini{padding:15px;background:#fafcf9;border-radius:12px;border:1px solid var(--line)}.mini b{display:block;font-size:20px;margin-top:5px}.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:9px;cursor:pointer}.tab.active{background:var(--green);color:#fff;border-color:var(--green)}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.form label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.form .full{grid-column:1/-1}.modal{position:fixed;inset:0;background:rgba(0,0,0,.38);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.show{display:flex}.modalbox{background:#fff;border-radius:18px;max-width:720px;width:100%;max-height:90vh;overflow:auto;padding:22px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.close{border:0;background:#f1f3f1;border-radius:50%;width:34px;height:34px;cursor:pointer}.notice{padding:12px;border-radius:12px;background:#fff7e6;border:1px solid #f0d59b;color:#7b5b1c;margin-bottom:14px}.empty{padding:25px;text-align:center;color:var(--muted)}.barbg{height:9px;background:#edf1ed;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--green2);border-radius:99px}.row{margin:15px 0}.rowhead{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}.chart{height:220px}.chart svg{width:100%;height:100%}
 @media(max-width:900px){.side{width:75px}.brand{font-size:0}.brand:before{content:'🐄';font-size:24px}.main{margin-left:75px;width:calc(100% - 75px);padding:20px}.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.profile{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.main{padding:14px}.cards{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.top h1{font-size:22px}}
+
+.photo-box{display:flex;gap:16px;align-items:center;padding:14px;background:#fafcf9;border:1px solid var(--line);border-radius:14px}.animal-photo{width:92px;height:92px;border-radius:14px;object-fit:cover;background:#edf1ed;display:flex;align-items:center;justify-content:center;font-size:38px}.profile-hero{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;margin-bottom:18px}.profile-photo{width:120px;height:120px;border-radius:18px;object-fit:cover;background:#edf1ed;border:1px solid var(--line)}.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.compare-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.calendar-head{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:16px}.event{border-left:4px solid var(--green2);padding:12px 14px;background:#fafcf9;border-radius:10px;margin-bottom:9px}.event b{display:block}.chartline{width:100%;height:250px}.chartline svg{width:100%;height:100%}.photo-upload{display:flex;gap:10px;align-items:center;flex-wrap:wrap}@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.compare-grid{grid-template-columns:1fr}.profile-hero{grid-template-columns:90px 1fr}.profile-photo{width:90px;height:90px}}
 </style>
 </head>
 <body>
@@ -21,6 +23,9 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
     <button data-section="lotes">▤ &nbsp; Lotes</button>
     <button data-section="pesajes">⚖ &nbsp; Pesajes</button>
     <button data-section="lecheria">🥛 &nbsp; Lechería</button>
+    <button data-section="calendario">📅 &nbsp; Calendario</button>
+    <button data-section="comparador">⚖️ &nbsp; Comparador</button>
+    <button data-section="crecimiento">📈 &nbsp; Crecimiento</button>
     <button data-section="alertas">🔔 &nbsp; Alertas</button>
     <button data-section="analisis">◒ &nbsp; Análisis</button>
   </div>
@@ -63,7 +68,17 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
 <div class="panel" style="margin-top:16px"><div class="tablewrap"><table class="table"><thead><tr><th>Animal</th><th>Nombre</th><th>Turno</th><th>Litros</th><th>Meta</th><th>Estado</th></tr></thead><tbody id="milkRows"></tbody></table></div></div>
 </section>
 
-<section id="alertas" class="section"><div class="top"><div><h1>Alertas</h1><p>Medicamentos y partos próximos.</p></div></div><div class="grid"><div class="panel"><h3>💊 Medicamentos</h3><div id="medAlerts"></div></div><div class="panel"><h3>🐄 Partos</h3><div id="birthAlerts"></div></div></div></section>
+
+<section id="calendario" class="section"><div class="top"><div><h1>Calendario ganadero</h1><p>Eventos de todos los animales en una sola vista.</p></div><div class="actions"><button class="btn soft" onclick="calendarMove(-1)">← Día anterior</button><button class="btn soft" onclick="calendarToday()">Hoy</button><button class="btn soft" onclick="calendarMove(1)">Día siguiente →</button></div></div>
+<div class="panel"><div class="calendar-head"><input id="calendarDate" type="date" onchange="renderCalendar()"><span class="badge" id="calendarLabel"></span></div><div id="calendarEvents"></div></div></section>
+
+<section id="comparador" class="section"><div class="top"><div><h1>Comparador de animales</h1><p>Selecciona animales para comparar rendimiento, leche y registros.</p></div><button class="btn primary" onclick="renderComparator()">Actualizar comparación</button></div>
+<div class="panel"><div class="filters" id="compareChecks"></div><div id="compareResult"></div></div></section>
+
+<section id="crecimiento" class="section"><div class="top"><div><h1>Historial de crecimiento</h1><p>Evolución del peso de un animal a través de sus pesajes.</p></div></div>
+<div class="panel"><div class="filters"><select id="growthAnimal" onchange="renderGrowth()"></select></div><div id="growthSummary"></div><div class="chartline" id="growthChart"></div><div id="growthTable"></div></div></section>
+
+<section id="alertas" class="section"><div class="top"><div><h1>Alertas</h1><p>Medicamentos y partos próximos.</p></div></div><div class="grid"><div class="panel"><h3>💊 Medicamentos, vacunas y desparasitaciones</h3><button class="btn primary" onclick="openHealthModal()">+ Nuevo registro sanitario</button><div id="medAlerts" style="margin-top:14px"></div></div><div class="panel"><h3>🐄 Partos</h3><div id="birthAlerts"></div></div></div></section>
 
 <section id="analisis" class="section"><div class="top"><div><h1>Análisis</h1><p>Indicadores calculados con el inventario actual.</p></div></div><div class="cards">
 <div class="card"><div class="label">Animales sobre objetivo</div><div class="value" id="aGood">0%</div><div class="trend">GDP objetivo: 0,75 kg/día</div></div>
@@ -74,7 +89,7 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
 
 <section id="perfil" class="section"><div class="top"><div><button class="btn soft" onclick="go('animales')">← Volver</button><h1 id="profileTitle" style="margin-top:14px"></h1><p id="profileSub"></p></div><div class="actions"><button class="btn soft" onclick="editCurrent()">Editar</button><button class="btn danger" onclick="deleteCurrent()">Eliminar animal</button></div></div>
 <div class="profile" id="profileCards"></div>
-<div class="tabs"><button class="tab active" onclick="profileTab('resumen',this)">Resumen</button><button class="tab" onclick="profileTab('pesajesP',this)">Pesajes</button><button class="tab" onclick="profileTab('medP',this)">Medicamentos</button><button class="tab" onclick="profileTab('partosP',this)">Partos</button><button class="tab" onclick="profileTab('lecheP',this)">Lechería</button></div>
+<div class="tabs"><button class="tab active" onclick="profileTab('resumen',this)">⭐ Ficha 360°</button><button class="tab" onclick="profileTab('pesajesP',this)">Pesajes</button><button class="tab" onclick="profileTab('medP',this)">Sanidad</button><button class="tab" onclick="profileTab('partosP',this)">Partos</button><button class="tab" onclick="profileTab('lecheP',this)">Lechería</button><button class="tab" onclick="profileTab('crecimientoP',this)">📈 Crecimiento</button></div>
 <div id="profileContent" class="panel"></div>
 </section>
 </main></div>
@@ -84,12 +99,33 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
 <div><label>Raza</label><input id="fBreed" required></div><div><label>Lote</label><input id="fLot" required></div>
 <div><label>Edad (meses)</label><input id="fAge" type="number" min="0" required></div><div><label>Peso (kg)</label><input id="fWeight" type="number" step="0.1" min="0" required></div>
 <div><label>GDP (kg/día)</label><input id="fGdp" type="number" step="0.01" min="0" required></div><div><label>¿Es vaca lechera?</label><select id="fDairy"><option value="no">No</option><option value="yes">Sí</option></select></div>
-<div><label>Meta litros/día</label><input id="fMilkTarget" type="number" step="0.1" min="0" value="12"></div><div class="full"><label>Observaciones</label><textarea id="fNotes" rows="3"></textarea></div>
+<div><label>Meta litros/día</label><input id="fMilkTarget" type="number" step="0.1" min="0" value="12"></div>
+<div class="full"><label>Fotografía del animal</label><div class="photo-upload"><img id="animalPhotoPreview" class="animal-photo" alt="Foto del animal"><input id="fPhoto" type="file" accept="image/*" onchange="previewAnimalPhoto(event)"><button type="button" class="btn soft" onclick="clearAnimalPhoto()">Quitar foto</button></div></div>
+<div class="full"><label>Observaciones</label><textarea id="fNotes" rows="3"></textarea></div>
 </div><div class="actions" style="margin-top:16px"><button type="button" class="btn soft" onclick="closeModal('animalModal')">Cancelar</button><button class="btn primary">Guardar</button></div></form></div></div>
 
 <div class="modal" id="weighModal"><div class="modalbox"><div class="modalhead"><h2>Registrar pesaje</h2><button class="close" onclick="closeModal('weighModal')">×</button></div><form class="form" onsubmit="saveWeigh(event)"><div class="formgrid"><div><label>Animal</label><select id="wAnimal" required></select></div><div><label>Fecha</label><input id="wDate" type="date" required></div><div><label>Peso (kg)</label><input id="wWeight" type="number" step="0.1" required></div></div><div class="actions" style="margin-top:16px"><button type="button" class="btn soft" onclick="closeModal('weighModal')">Cancelar</button><button class="btn primary">Guardar</button></div></form></div></div>
 
 <div class="modal" id="milkModal"><div class="modalbox"><div class="modalhead"><h2>Registrar litros</h2><button class="close" onclick="closeModal('milkModal')">×</button></div><form class="form" onsubmit="saveMilk(event)"><div class="formgrid"><div><label>Vaca</label><select id="mAnimal" required></select></div><div><label>Fecha</label><input id="mDate" type="date" required></div><div><label>Turno</label><select id="mShift"><option>Mañana</option><option>Tarde</option></select></div><div><label>Litros</label><input id="mLiters" type="number" step="0.1" min="0" required></div></div><div class="actions" style="margin-top:16px"><button type="button" class="btn soft" onclick="closeModal('milkModal')">Cancelar</button><button class="btn primary">Guardar</button></div></form></div></div>
+
+
+<div class="modal" id="healthModal"><div class="modalbox"><div class="modalhead"><h2>Nuevo registro sanitario</h2><button class="close" onclick="closeModal('healthModal')">×</button></div>
+<form class="form" onsubmit="saveHealth(event)">
+<div class="formgrid">
+<div><label>Animal</label><select id="hAnimal" required></select></div>
+<div><label>Tipo</label><select id="hType"><option>Medicamento</option><option>Vacuna</option><option>Desparasitante</option><option>Vitaminas</option><option>Antibiótico</option><option>Otro</option></select></div>
+<div><label>Nombre del producto / medicamento</label><input id="hProduct" required placeholder="Ej. Ivermectina"></div>
+<div><label>Cantidad</label><input id="hQuantity" type="number" step="0.01" min="0" required></div>
+<div><label>Unidad</label><select id="hUnit"><option>ml</option><option>mg</option><option>g</option><option>cc</option><option>tabletas</option><option>dosis</option><option>Otro</option></select></div>
+<div><label>Fecha de aplicación</label><input id="hDate" type="date" required></div>
+<div><label>Hora de aplicación</label><input id="hTime" type="time" required></div>
+<div><label>Quién aplicó</label><input id="hAppliedBy" required placeholder="Nombre de la persona"></div>
+<div><label>Volver a aplicar cada (días)</label><input id="hRepeat" type="number" min="0" step="1" placeholder="Ej. 30"></div>
+<div class="full"><label>Observaciones</label><textarea id="hNote" rows="3" placeholder="Vía de aplicación, lote, reacción, etc."></textarea></div>
+</div>
+<div class="notice">La próxima aplicación se calcula automáticamente y aparecerá en Alertas. Si no necesitas repetir el tratamiento, deja el periodo vacío.</div>
+<div class="actions"><button type="button" class="btn soft" onclick="closeModal('healthModal')">Cancelar</button><button class="btn primary">Guardar registro</button></div>
+</form></div></div>
 
 <script>
 const KEY='ganadoAnalyticsV4';
@@ -103,6 +139,7 @@ if(!state){
   state={animals,weighings:[],medications:[],births:[],milk:[]};
   localStorage.setItem(KEY,JSON.stringify(state));
 }
+if(!state.births)state.births=[];if(!state.medications)state.medications=[];if(!state.weighings)state.weighings=[];if(!state.milk)state.milk=[];state.animals.forEach(a=>{if(a.photo===undefined)a.photo='';});
 let currentId=null;
 const today=()=>new Date().toISOString().slice(0,10);
 const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
@@ -111,10 +148,48 @@ const status=a=>a.gdp>=.75?'good':a.gdp>=.62?'mid':'low';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function go(id){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active'); if(id!=='perfil') currentId=null; renderAll();}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{go(b.dataset.section);document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+
+function photoPlaceholder(a, cls='profile-photo'){return a.photo?`<img class="${cls}" src="${a.photo}" alt="${esc(a.name)}">`:`<div class="${cls}" style="display:flex;align-items:center;justify-content:center;font-size:44px">🐄</div>`}
+let photoDraft='';
+function previewAnimalPhoto(e){
+ const f=e.target.files&&e.target.files[0]; if(!f)return;
+ const rd=new FileReader(); rd.onload=()=>{const img=new Image();img.onload=()=>{const max=800,scale=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);photoDraft=c.toDataURL('image/jpeg',.82);document.getElementById('animalPhotoPreview').src=photoDraft;};img.src=rd.result;};rd.readAsDataURL(f);
+}
+function clearAnimalPhoto(){photoDraft='';document.getElementById('fPhoto').value='';document.getElementById('animalPhotoPreview').src='';}
+function calendarToday(){document.getElementById('calendarDate').value=today();renderCalendar()}
+function calendarMove(delta){const el=document.getElementById('calendarDate');const d=new Date((el.value||today())+'T00:00:00');d.setDate(d.getDate()+delta);el.value=d.toISOString().slice(0,10);renderCalendar()}
+function renderCalendar(){
+ const date=document.getElementById('calendarDate').value||today();document.getElementById('calendarLabel').textContent=new Date(date+'T00:00:00').toLocaleDateString('es-CO',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+ const ev=[];
+ state.weighings.filter(x=>x.date===date).forEach(x=>{let a=animal(x.animalId);if(a)ev.push({t:'⚖️ Pesaje',a:a.name,d:`${x.weight} kg`,time:''})});
+ state.milk.filter(x=>x.date===date).forEach(x=>{let a=animal(x.animalId);if(a)ev.push({t:'🥛 Ordeño',a:a.name,d:`${x.shift} · ${x.liters} L`,time:''})});
+ state.medications.forEach(x=>{let a=animal(x.animalId),n=nextDate(x.date,x.repeatDays);if(a&&(x.date===date||n===date))ev.push({t:x.date===date?'💊 Aplicación':'🔔 Reaplicación',a:a.name,d:`${x.type||'Medicamento'} · ${x.product}`,time:x.time||''})});
+ state.births.filter(x=>x.due===date).forEach(x=>{let a=animal(x.animalId);if(a)ev.push({t:'🐄 Parto probable',a:a.name,d:'Fecha estimada',time:''})});
+ document.getElementById('calendarEvents').innerHTML=ev.length?ev.map(x=>`<div class="event"><b>${x.t} · ${esc(x.a)}</b><span>${esc(x.d)} ${x.time?'· '+x.time:''}</span></div>`).join(''):'<div class="empty">No hay actividades registradas para este día.</div>';
+}
+function initComparator(){
+ const el=document.getElementById('compareChecks');el.innerHTML=state.animals.map(a=>`<label class="badge" style="cursor:pointer"><input type="checkbox" class="compareBox" value="${a.id}" onchange="renderComparator()"> ${esc(a.name)}</label>`).join('');
+}
+function renderComparator(){
+ const ids=[...document.querySelectorAll('.compareBox:checked')].map(x=>x.value).slice(0,5),as=ids.map(animal).filter(Boolean);
+ document.getElementById('compareResult').innerHTML=as.length?`<div class="compare-grid">${as.map(a=>{let milk=state.milk.filter(x=>x.animalId===a.id&&x.date===today()).reduce((s,x)=>s+x.liters,0), meds=state.medications.filter(x=>x.animalId===a.id).length, weights=state.weighings.filter(x=>x.animalId===a.id).length;return `<div class="compare-card">${photoPlaceholder(a,'animal-photo')}<h3>${esc(a.name)}</h3><div class="kpi-grid"><div><span class="label">Peso</span><b>${a.weight} kg</b></div><div><span class="label">GDP</span><b>${a.gdp.toFixed(2)}</b></div><div><span class="label">Leche hoy</span><b>${milk.toFixed(1)} L</b></div><div><span class="label">Pesajes</span><b>${weights}</b></div><div><span class="label">Sanidad</span><b>${meds}</b></div></div></div>`}).join('')}</div>`:'<div class="empty">Selecciona al menos un animal. Puedes comparar hasta 5.</div>';
+}
+function initGrowth(){
+ document.getElementById('growthAnimal').innerHTML=state.animals.map(a=>`<option value="${a.id}">${esc(a.name)} · ${a.id}</option>`).join('');renderGrowth();
+}
+function renderGrowth(){
+ const a=animal(document.getElementById('growthAnimal').value);if(!a){document.getElementById('growthChart').innerHTML='';return}
+ let rs=state.weighings.filter(x=>x.animalId===a.id).sort((x,y)=>x.date.localeCompare(y.date));if(!rs.length)rs=[{date:today(),weight:a.weight}];
+ const min=Math.min(...rs.map(x=>x.weight)),max=Math.max(...rs.map(x=>x.weight)),range=Math.max(1,max-min),W=700,H=230,p=35;
+ const pts=rs.map((r,i)=>{let x=p+(i/(Math.max(1,rs.length-1)))*(W-2*p),y=H-p-((r.weight-min)/range)*(H-2*p);return [x,y,r]}),poly=pts.map(x=>x[0]+','+x[1]).join(' ');
+ document.getElementById('growthSummary').innerHTML=`<div class="kpi-grid"><div class="mini"><span class="label">Animal</span><b>${esc(a.name)}</b></div><div class="mini"><span class="label">Peso actual</span><b>${a.weight} kg</b></div><div class="mini"><span class="label">Primer peso</span><b>${rs[0].weight} kg</b></div><div class="mini"><span class="label">Cambio</span><b>${(rs[rs.length-1].weight-rs[0].weight).toFixed(1)} kg</b></div><div class="mini"><span class="label">Registros</span><b>${rs.length}</b></div></div>`;
+ document.getElementById('growthChart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><polyline points="${poly}" fill="none" stroke="currentColor" stroke-width="3"/>${pts.map(x=>`<circle cx="${x[0]}" cy="${x[1]}" r="5" fill="currentColor"/><text x="${x[0]}" y="${H-8}" font-size="10" text-anchor="middle">${x[2].date.slice(5)}</text><text x="${x[0]}" y="${x[1]-9}" font-size="10" text-anchor="middle">${x[2].weight}kg</text>`).join('')}</svg>`;
+ document.getElementById('growthTable').innerHTML=tableOrEmpty(rs.slice().reverse().map(r=>`<tr><td>${r.date}</td><td>${r.weight} kg</td></tr>`).join(''),['Fecha','Peso']);
+}
 function renderAnimals(){
  const q=(document.getElementById('search')?.value||'').toLowerCase(), s=document.getElementById('status')?.value||'';
  const rows=state.animals.filter(a=>(`${a.id} ${a.name} ${a.lot} ${a.breed}`).toLowerCase().includes(q)&&(!s||status(a)===s));
- document.getElementById('animalRows').innerHTML=rows.map(a=>`<tr class="animal"><td>${esc(a.id)}</td><td>${esc(a.name)}</td><td>${esc(a.breed)}</td><td>${esc(a.lot)}</td><td>${a.weight} kg</td><td>${a.gdp.toFixed(2).replace('.',',')}</td><td>${a.dairy?'Sí':'No'}</td><td><div class="actions"><button class="btn soft" onclick="showAnimal('${esc(a.id)}')">Registros</button><button class="btn soft" onclick="openAnimalModal('${esc(a.id)}')">Editar</button><button class="btn danger" onclick="deleteAnimal('${esc(a.id)}')">Eliminar</button></div></td></tr>`).join('')||'<tr><td colspan="8" class="empty">No hay animales.</td></tr>';
+ document.getElementById('animalRows').innerHTML=rows.map(a=>`<tr class="animal"><td>${esc(a.id)}</td><td>${a.photo?'<span title="Con foto">📷</span> ':''}${esc(a.name)}</td><td>${esc(a.breed)}</td><td>${esc(a.lot)}</td><td>${a.weight} kg</td><td>${a.gdp.toFixed(2).replace('.',',')}</td><td>${a.dairy?'Sí':'No'}</td><td><div class="actions"><button class="btn soft" onclick="showAnimal('${esc(a.id)}')">Registros</button><button class="btn soft" onclick="openAnimalModal('${esc(a.id)}')">Editar</button><button class="btn danger" onclick="deleteAnimal('${esc(a.id)}')">Eliminar</button></div></td></tr>`).join('')||'<tr><td colspan="8" class="empty">No hay animales.</td></tr>';
 }
 function openAnimalModal(id){
  const a=id?animal(id):null;
@@ -130,6 +205,9 @@ function openAnimalModal(id){
  document.getElementById('fDairy').value=a&&a.dairy?'yes':'no';
  document.getElementById('fMilkTarget').value=a?a.milkTarget:12;
  document.getElementById('fNotes').value=a?a.notes||'':'';
+ photoDraft=a&&a.photo?a.photo:'';
+ document.getElementById('fPhoto').value='';
+ document.getElementById('animalPhotoPreview').src=photoDraft||'';
  document.getElementById('animalModal').classList.add('show');
 }
 function saveAnimal(e){
@@ -165,11 +243,20 @@ function renderProfile(){
 function countRecords(id){return state.weighings.filter(x=>x.animalId===id).length+state.medications.filter(x=>x.animalId===id).length+state.births.filter(x=>x.animalId===id).length+state.milk.filter(x=>x.animalId===id).length}
 function renderProfileContent(tab){
  const a=animal(currentId); if(!a)return; let html='';
- if(tab==='resumen') html=`<h3>Resumen</h3><p><b>Nombre:</b> ${esc(a.name)}</p><p><b>Observaciones:</b> ${esc(a.notes)||'Sin observaciones'}</p><div class="notice">Al cambiar el nombre, todos los registros históricos siguen vinculados al mismo animal y se muestran con el nuevo nombre automáticamente.</div>`;
+ if(tab==='resumen') {
+ let milkToday=state.milk.filter(x=>x.animalId===a.id&&x.date===today()).reduce((s,x)=>s+x.liters,0);
+ let meds=state.medications.filter(x=>x.animalId===a.id), nextM=meds.map(x=>nextDate(x.date,x.repeatDays)).filter(Boolean).sort()[0];
+ let birth=state.births.filter(x=>x.animalId===a.id).sort((x,y)=>x.due.localeCompare(y.due))[0];
+ html=`<div class="profile-hero">${photoPlaceholder(a)}<div><h2 style="margin:0 0 6px">${esc(a.name)}</h2><div class="label">${esc(a.id)} · ${esc(a.breed)} · ${esc(a.lot)} · ${a.age} meses</div><div class="actions" style="margin-top:12px"><button class="btn primary" onclick="openWeighModal()">+ Pesaje</button><button class="btn soft" onclick="openHealthModal()">+ Sanidad</button><button class="btn soft" onclick="openMilkModal()">+ Leche</button></div></div></div>
+ <div class="kpi-grid"><div class="mini"><span class="label">Peso actual</span><b>${a.weight} kg</b></div><div class="mini"><span class="label">GDP</span><b>${a.gdp.toFixed(2)} kg/día</b></div><div class="mini"><span class="label">Leche hoy</span><b>${milkToday.toFixed(1)} L</b></div><div class="mini"><span class="label">Sanidad</span><b>${meds.length}</b></div><div class="mini"><span class="label">Próxima sanidad</span><b>${nextM||'—'}</b></div></div>
+ <div class="grid"><div class="panel"><h3>📈 Rendimiento</h3><p><b>Estado:</b> <span class="pill ${status(a)}">${status(a)==='good'?'Buen rendimiento':status(a)==='mid'?'En seguimiento':'Requiere revisión'}</span></p><p><b>Observaciones:</b> ${esc(a.notes)||'Sin observaciones'}</p></div><div class="panel"><h3>🐄 Próximo evento</h3><p>${birth?`Parto probable: <b>${birth.due}</b>`:'No hay parto registrado.'}</p></div></div>
+ <div class="notice">Ficha 360°: todos los registros siguen vinculados al ID ${esc(a.id)}, aunque cambies el nombre del animal.</div>`;
+}
  if(tab==='pesajesP'){let rs=state.weighings.filter(x=>x.animalId===a.id).sort((x,y)=>y.date.localeCompare(x.date));html='<h3>Historial de pesajes</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${a.name}</td><td>${r.weight} kg</td><td>${r.note||''}</td></tr>`).join(''),['Fecha','Animal','Peso','Observación']);}
- if(tab==='medP'){let rs=state.medications.filter(x=>x.animalId===a.id);html='<h3>Medicamentos</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${esc(r.product)}</td><td>${esc(r.dose)}</td><td>${esc(r.note||'')}</td></tr>`).join(''),['Fecha','Medicamento','Dosis','Observación']);}
+ if(tab==='medP'){let rs=state.medications.filter(x=>x.animalId===a.id).sort((x,y)=>(y.date+' '+(y.time||'')).localeCompare(x.date+' '+(x.time||'')));html='<div class="actions" style="justify-content:space-between"><h3>Control sanitario</h3><button class="btn primary" onclick="openHealthModal()">+ Nuevo registro</button></div>'+tableOrEmpty(rs.map(r=>{let nxt=nextDate(r.date,r.repeatDays),st=healthStatus(nxt);return `<tr><td>${r.date}</td><td>${r.time||''}</td><td>${esc(r.type||'Medicamento')}</td><td>${esc(r.product)}</td><td>${esc(r.quantity)} ${esc(r.unit||'')}</td><td>${r.repeatDays?r.repeatDays+' días':'—'}</td><td>${nxt||'—'}</td><td>${esc(r.appliedBy||'')}</td><td><span class="pill ${st.cls}">${st.text}</span></td></tr>`}).join(''),['Fecha','Hora','Tipo','Producto','Cantidad','Reaplicar','Próxima','Aplicó','Estado']);}
  if(tab==='partosP'){let rs=state.births.filter(x=>x.animalId===a.id);html='<h3>Partos</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.due}</td><td>${esc(r.note||'')}</td></tr>`).join(''),['Fecha probable','Observación']);}
  if(tab==='lecheP'){let rs=state.milk.filter(x=>x.animalId===a.id).sort((x,y)=>y.date.localeCompare(x.date));html='<h3>Lechería</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${r.shift}</td><td>${r.liters} L</td></tr>`).join(''),['Fecha','Turno','Litros']);}
+ if(tab==='crecimientoP'){let rs=state.weighings.filter(x=>x.animalId===a.id).sort((x,y)=>x.date.localeCompare(y.date));let min=rs.length?Math.min(...rs.map(x=>x.weight)):a.weight,max=rs.length?Math.max(...rs.map(x=>x.weight)):a.weight,range=Math.max(1,max-min),W=700,H=220,p=30,pts=(rs.length?rs:[{date:today(),weight:a.weight}]).map((r,i,arr)=>{let x=p+(i/Math.max(1,arr.length-1))*(W-2*p),y=H-p-((r.weight-min)/range)*(H-2*p);return [x,y,r]}),poly=pts.map(z=>z[0]+','+z[1]).join(' ');html='<h3>Historial de crecimiento</h3><div class="chartline"><svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><polyline points="'+poly+'" fill="none" stroke="currentColor" stroke-width="3"/>'+pts.map(z=>'<circle cx="'+z[0]+'" cy="'+z[1]+'" r="5" fill="currentColor"/><text x="'+z[0]+'" y="'+(H-7)+'" font-size="10" text-anchor="middle">'+z[2].date.slice(5)+'</text><text x="'+z[0]+'" y="'+(z[1]-8)+'" font-size="10" text-anchor="middle">'+z[2].weight+'kg</text>').join('')+'</svg></div>'+tableOrEmpty(rs.slice().reverse().map(r=>'<tr><td>'+r.date+'</td><td>'+r.weight+' kg</td></tr>').join(''),['Fecha','Peso']);}
  document.getElementById('profileContent').innerHTML=html;
 }
 function tableOrEmpty(rows,heads){return rows?`<div class="tablewrap"><table class="table"><thead><tr>${heads.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows||'<tr><td class="empty">Sin registros</td></tr>'}</tbody></table></div>`:''}
@@ -186,13 +273,51 @@ function renderMilk(){
 function renderPesajes(){let rs=[...state.weighings].sort((a,b)=>b.date.localeCompare(a.date));document.getElementById('weighRows').innerHTML=rs.map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.id}</td><td>${a.name}</td><td>${a.lot}</td><td>${r.weight} kg</td><td>${a.gdp.toFixed(2)} kg/día</td></tr>`:''}).join('')||'<tr><td colspan="6" class="empty">Sin pesajes registrados.</td></tr>'}
 function renderAlerts(){
  const med=state.medications, births=state.births;
- document.getElementById('medAlerts').innerHTML=med.length?med.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">💊 <b>${a.name}</b> · ${r.date} · ${esc(r.product)}</div>`:''}).join(''):'<div class="empty">Sin medicamentos registrados.</div>';
- document.getElementById('birthAlerts').innerHTML=births.length?births.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">🐄 <b>${a.name}</b> · parto probable ${r.due}</div>`:''}).join(''):'<div class="empty">Sin alertas de parto.</div>';
+ const healthAlerts=med.map(r=>{let a=animal(r.animalId), nxt=nextDate(r.date,r.repeatDays);return a&&nxt?{a,r,nxt,st:healthStatus(nxt)}:null}).filter(Boolean).sort((x,y)=>x.nxt.localeCompare(y.nxt));
+ document.getElementById('medAlerts').innerHTML=healthAlerts.length?healthAlerts.map(x=>`<div class="notice ${x.st.cls==='danger'?'danger':''}">💊 <b>${esc(x.a.name)}</b> · ${esc(x.r.type)}: ${esc(x.r.product)} · ${esc(x.r.quantity)} ${esc(x.r.unit)}<br><small>Aplicó: ${esc(x.r.appliedBy)} · ${x.r.time||''} · Próxima: <b>${x.nxt}</b> · <span class="pill ${x.st.cls}">${x.st.text}</span></small></div>`).join(''):'<div class="empty">Sin alertas de medicamentos, vacunas o desparasitaciones.</div>';
+ document.getElementById('birthAlerts').innerHTML=births.length?births.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">🐄 <b>${esc(a.name)}</b> · parto probable ${r.due}</div>`:''}).join(''):'<div class="empty">Sin alertas de parto.</div>';
 }
 function renderLots(){const map={};state.animals.forEach(a=>{map[a.lot]??=[];map[a.lot].push(a)});document.getElementById('lotCards').innerHTML=Object.entries(map).map(([lot,as])=>{let w=as.reduce((s,a)=>s+a.weight,0)/as.length,g=as.reduce((s,a)=>s+a.gdp,0)/as.length;return `<div class="card"><div class="label">${lot}</div><div class="value">${g.toFixed(2)} <small style="font-size:12px;color:#6d786f">kg/día</small></div><div class="label">${as.length} animales · ${w.toFixed(0)} kg promedio</div></div>`}).join('')}
-function renderDashboard(){const n=state.animals.length,w=n?state.animals.reduce((s,a)=>s+a.weight,0)/n:0,g=n?state.animals.reduce((s,a)=>s+a.gdp,0)/n:0,m=state.milk.filter(x=>x.date===today()).reduce((s,x)=>s+x.liters,0),c=state.animals.filter(a=>a.dairy).length;document.getElementById('kAnimals').textContent=n;document.getElementById('kWeight').textContent=w.toFixed(0)+' kg';document.getElementById('kGdp').textContent=g.toFixed(2).replace('.',',')+' kg/día';document.getElementById('kMilk').textContent=m.toFixed(1)+' L';document.getElementById('kMilkSub').textContent=c+' vacas lecheras';let good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0,mid=n?Math.round(state.animals.filter(a=>a.gdp>=.62&&a.gdp<.75).length/n*100):0,low=100-good-mid;document.getElementById('dashboardBars').innerHTML=`<div class="row"><div class="rowhead"><span>🟢 Sobre objetivo</span><b>${good}%</b></div><div class="barbg"><div class="bar" style="width:${good}%"></div></div></div><div class="row"><div class="rowhead"><span>🟡 En seguimiento</span><b>${mid}%</b></div><div class="barbg"><div class="bar" style="width:${mid}%"></div></div></div><div class="row"><div class="rowhead"><span>🔴 Requiere revisión</span><b>${low}%</b></div><div class="barbg"><div class="bar" style="width:${low}%"></div></div></div>`;document.getElementById('dashboardAlerts').innerHTML=`<div class="notice">💊 ${state.medications.length} registros de medicamentos</div><div class="notice">🐄 ${state.births.length} registros de parto</div>`;document.getElementById('recentRows').innerHTML=state.weighings.slice(-8).reverse().map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.name}</td><td>Pesaje</td><td>${r.weight} kg</td></tr>`:''}).join('')||'<tr><td colspan="4" class="empty">Aún no hay movimientos.</td></tr>'}
+function renderDashboard(){const n=state.animals.length,w=n?state.animals.reduce((s,a)=>s+a.weight,0)/n:0,g=n?state.animals.reduce((s,a)=>s+a.gdp,0)/n:0,m=state.milk.filter(x=>x.date===today()).reduce((s,x)=>s+x.liters,0),c=state.animals.filter(a=>a.dairy).length;document.getElementById('kAnimals').textContent=n;document.getElementById('kWeight').textContent=w.toFixed(0)+' kg';document.getElementById('kGdp').textContent=g.toFixed(2).replace('.',',')+' kg/día';document.getElementById('kMilk').textContent=m.toFixed(1)+' L';document.getElementById('kMilkSub').textContent=c+' vacas lecheras';let good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0,mid=n?Math.round(state.animals.filter(a=>a.gdp>=.62&&a.gdp<.75).length/n*100):0,low=100-good-mid;document.getElementById('dashboardBars').innerHTML=`<div class="row"><div class="rowhead"><span>🟢 Sobre objetivo</span><b>${good}%</b></div><div class="barbg"><div class="bar" style="width:${good}%"></div></div></div><div class="row"><div class="rowhead"><span>🟡 En seguimiento</span><b>${mid}%</b></div><div class="barbg"><div class="bar" style="width:${mid}%"></div></div></div><div class="row"><div class="rowhead"><span>🔴 Requiere revisión</span><b>${low}%</b></div><div class="barbg"><div class="bar" style="width:${low}%"></div></div></div>`;const dueHealth=state.medications.filter(r=>{const n=nextDate(r.date,r.repeatDays);return n&&healthStatus(n).text!=='Programada'}).length;document.getElementById('dashboardAlerts').innerHTML=`<div class="notice">💊 ${state.medications.length} registros sanitarios · ${dueHealth} requieren atención</div><div class="notice">🐄 ${state.births.length} registros de parto</div>`;document.getElementById('recentRows').innerHTML=state.weighings.slice(-8).reverse().map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.name}</td><td>Pesaje</td><td>${r.weight} kg</td></tr>`:''}).join('')||'<tr><td colspan="4" class="empty">Aún no hay movimientos.</td></tr>'}
 function renderAnalysis(){let n=state.animals.length,total=state.animals.reduce((s,a)=>s+a.weight,0),good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0;document.getElementById('aGood').textContent=good+'%';document.getElementById('aTotalWeight').textContent=total.toFixed(0)+' kg';document.getElementById('aCows').textContent=state.animals.filter(a=>a.dairy).length;document.getElementById('aAlerts').textContent=state.medications.length+state.births.length}
-function renderAll(){renderAnimals();renderLots();renderPesajes();renderMilk();renderAlerts();renderDashboard();renderAnalysis();if(currentId&&document.getElementById('perfil').classList.contains('active'))renderProfile()}
+
+function nextDate(date,days){
+ if(!date || !days || +days<=0)return '';
+ const d=new Date(date+'T00:00:00'); d.setDate(d.getDate()+Number(days)); return d.toISOString().slice(0,10);
+}
+function healthStatus(date){
+ if(!date)return {cls:'ok',text:'Sin repetición'};
+ const t=new Date(today()+'T00:00:00'), d=new Date(date+'T00:00:00'), diff=Math.ceil((d-t)/86400000);
+ if(diff<0)return {cls:'danger',text:'Vencida'};
+ if(diff<=3)return {cls:'warn',text:'En '+diff+' día'+(diff===1?'':'s')};
+ return {cls:'ok',text:'Programada'};
+}
+function openHealthModal(id){ id=id||currentId;
+ document.getElementById('hAnimal').innerHTML=state.animals.map(a=>`<option value="${a.id}" ${a.id===id?'selected':''}>${a.name} · ${a.id}</option>`).join('');
+ document.getElementById('hDate').value=today();
+ document.getElementById('hTime').value=new Date().toTimeString().slice(0,5);
+ document.getElementById('hProduct').value='';document.getElementById('hQuantity').value='';
+ document.getElementById('hRepeat').value='';document.getElementById('hAppliedBy').value='';document.getElementById('hNote').value='';
+ document.getElementById('healthModal').classList.add('show');
+}
+function saveHealth(e){
+ e.preventDefault();
+ state.medications.push({
+  animalId:document.getElementById('hAnimal').value,
+  type:document.getElementById('hType').value,
+  product:document.getElementById('hProduct').value.trim(),
+  quantity:+document.getElementById('hQuantity').value,
+  unit:document.getElementById('hUnit').value,
+  date:document.getElementById('hDate').value,
+  time:document.getElementById('hTime').value,
+  appliedBy:document.getElementById('hAppliedBy').value.trim(),
+  repeatDays:+document.getElementById('hRepeat').value||0,
+  note:document.getElementById('hNote').value.trim()
+ });
+ save();closeModal('healthModal');renderAll();if(currentId)renderProfileContent('medP');
+}
+
+function renderAll(){renderAnimals();renderLots();renderPesajes();renderMilk();renderAlerts();renderDashboard();renderAnalysis();if(document.getElementById('calendarDate')&&!document.getElementById('calendarDate').value)document.getElementById('calendarDate').value=today();renderCalendar();initComparator();initGrowth();if(currentId&&document.getElementById('perfil').classList.contains('active'))renderProfile()}
 renderAll();
 </script>
 </body></html>
