@@ -1,14 +1,9 @@
-GANADO ANALYTICS V4
+GANADO ANALYTICS V5 - CONTROL SANITARIO
 
-Novedades:
-- Los animales tienen ID y nombre.
-- Al cambiar el nombre, los registros históricos siguen ligados al mismo animal y muestran automáticamente el nombre nuevo.
-- Se puede eliminar un animal y se eliminan sus registros asociados.
-- Dashboard automático.
-- Lechería y control de litros.
-- Historial de pesajes.
-- Panel de alertas.
-- Datos guardados en localStorage del navegador.
-
-PUBLICACIÓN:
-Sube index.html al repositorio conectado a Vercel.
+Incluye:
+- Medicamentos: tipo, producto, cantidad, unidad, fecha, hora, aplicó, periodo de repetición, próxima aplicación y observaciones.
+- Vacunas y desparasitantes dentro del mismo control sanitario.
+- Alertas automáticas por próxima aplicación: vencida, próxima (<=3 días) o programada.
+- Historial sanitario dentro de la ficha de cada animal.
+- Cambio de nombre conserva los registros.
+- Eliminación de animal elimina sus registros asociados.

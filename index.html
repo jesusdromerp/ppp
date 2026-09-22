@@ -63,7 +63,7 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
 <div class="panel" style="margin-top:16px"><div class="tablewrap"><table class="table"><thead><tr><th>Animal</th><th>Nombre</th><th>Turno</th><th>Litros</th><th>Meta</th><th>Estado</th></tr></thead><tbody id="milkRows"></tbody></table></div></div>
 </section>
 
-<section id="alertas" class="section"><div class="top"><div><h1>Alertas</h1><p>Medicamentos y partos próximos.</p></div></div><div class="grid"><div class="panel"><h3>💊 Medicamentos</h3><div id="medAlerts"></div></div><div class="panel"><h3>🐄 Partos</h3><div id="birthAlerts"></div></div></div></section>
+<section id="alertas" class="section"><div class="top"><div><h1>Alertas</h1><p>Medicamentos y partos próximos.</p></div></div><div class="grid"><div class="panel"><h3>💊 Medicamentos, vacunas y desparasitaciones</h3><button class="btn primary" onclick="openHealthModal()">+ Nuevo registro sanitario</button><div id="medAlerts" style="margin-top:14px"></div></div><div class="panel"><h3>🐄 Partos</h3><div id="birthAlerts"></div></div></div></section>
 
 <section id="analisis" class="section"><div class="top"><div><h1>Análisis</h1><p>Indicadores calculados con el inventario actual.</p></div></div><div class="cards">
 <div class="card"><div class="label">Animales sobre objetivo</div><div class="value" id="aGood">0%</div><div class="trend">GDP objetivo: 0,75 kg/día</div></div>
@@ -90,6 +90,25 @@ button,input,select,textarea{font:inherit}.app{display:flex;min-height:100vh}.si
 <div class="modal" id="weighModal"><div class="modalbox"><div class="modalhead"><h2>Registrar pesaje</h2><button class="close" onclick="closeModal('weighModal')">×</button></div><form class="form" onsubmit="saveWeigh(event)"><div class="formgrid"><div><label>Animal</label><select id="wAnimal" required></select></div><div><label>Fecha</label><input id="wDate" type="date" required></div><div><label>Peso (kg)</label><input id="wWeight" type="number" step="0.1" required></div></div><div class="actions" style="margin-top:16px"><button type="button" class="btn soft" onclick="closeModal('weighModal')">Cancelar</button><button class="btn primary">Guardar</button></div></form></div></div>
 
 <div class="modal" id="milkModal"><div class="modalbox"><div class="modalhead"><h2>Registrar litros</h2><button class="close" onclick="closeModal('milkModal')">×</button></div><form class="form" onsubmit="saveMilk(event)"><div class="formgrid"><div><label>Vaca</label><select id="mAnimal" required></select></div><div><label>Fecha</label><input id="mDate" type="date" required></div><div><label>Turno</label><select id="mShift"><option>Mañana</option><option>Tarde</option></select></div><div><label>Litros</label><input id="mLiters" type="number" step="0.1" min="0" required></div></div><div class="actions" style="margin-top:16px"><button type="button" class="btn soft" onclick="closeModal('milkModal')">Cancelar</button><button class="btn primary">Guardar</button></div></form></div></div>
+
+
+<div class="modal" id="healthModal"><div class="modalbox"><div class="modalhead"><h2>Nuevo registro sanitario</h2><button class="close" onclick="closeModal('healthModal')">×</button></div>
+<form class="form" onsubmit="saveHealth(event)">
+<div class="formgrid">
+<div><label>Animal</label><select id="hAnimal" required></select></div>
+<div><label>Tipo</label><select id="hType"><option>Medicamento</option><option>Vacuna</option><option>Desparasitante</option><option>Vitaminas</option><option>Antibiótico</option><option>Otro</option></select></div>
+<div><label>Nombre del producto / medicamento</label><input id="hProduct" required placeholder="Ej. Ivermectina"></div>
+<div><label>Cantidad</label><input id="hQuantity" type="number" step="0.01" min="0" required></div>
+<div><label>Unidad</label><select id="hUnit"><option>ml</option><option>mg</option><option>g</option><option>cc</option><option>tabletas</option><option>dosis</option><option>Otro</option></select></div>
+<div><label>Fecha de aplicación</label><input id="hDate" type="date" required></div>
+<div><label>Hora de aplicación</label><input id="hTime" type="time" required></div>
+<div><label>Quién aplicó</label><input id="hAppliedBy" required placeholder="Nombre de la persona"></div>
+<div><label>Volver a aplicar cada (días)</label><input id="hRepeat" type="number" min="0" step="1" placeholder="Ej. 30"></div>
+<div class="full"><label>Observaciones</label><textarea id="hNote" rows="3" placeholder="Vía de aplicación, lote, reacción, etc."></textarea></div>
+</div>
+<div class="notice">La próxima aplicación se calcula automáticamente y aparecerá en Alertas. Si no necesitas repetir el tratamiento, deja el periodo vacío.</div>
+<div class="actions"><button type="button" class="btn soft" onclick="closeModal('healthModal')">Cancelar</button><button class="btn primary">Guardar registro</button></div>
+</form></div></div>
 
 <script>
 const KEY='ganadoAnalyticsV4';
@@ -167,7 +186,7 @@ function renderProfileContent(tab){
  const a=animal(currentId); if(!a)return; let html='';
  if(tab==='resumen') html=`<h3>Resumen</h3><p><b>Nombre:</b> ${esc(a.name)}</p><p><b>Observaciones:</b> ${esc(a.notes)||'Sin observaciones'}</p><div class="notice">Al cambiar el nombre, todos los registros históricos siguen vinculados al mismo animal y se muestran con el nuevo nombre automáticamente.</div>`;
  if(tab==='pesajesP'){let rs=state.weighings.filter(x=>x.animalId===a.id).sort((x,y)=>y.date.localeCompare(x.date));html='<h3>Historial de pesajes</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${a.name}</td><td>${r.weight} kg</td><td>${r.note||''}</td></tr>`).join(''),['Fecha','Animal','Peso','Observación']);}
- if(tab==='medP'){let rs=state.medications.filter(x=>x.animalId===a.id);html='<h3>Medicamentos</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${esc(r.product)}</td><td>${esc(r.dose)}</td><td>${esc(r.note||'')}</td></tr>`).join(''),['Fecha','Medicamento','Dosis','Observación']);}
+ if(tab==='medP'){let rs=state.medications.filter(x=>x.animalId===a.id).sort((x,y)=>(y.date+' '+(y.time||'')).localeCompare(x.date+' '+(x.time||'')));html='<div class="actions" style="justify-content:space-between"><h3>Control sanitario</h3><button class="btn primary" onclick="openHealthModal(\\''+a.id+'\\'')">+ Nuevo registro</button></div>'+tableOrEmpty(rs.map(r=>{let nxt=nextDate(r.date,r.repeatDays), st=healthStatus(nxt);return `<tr><td>${r.date}</td><td>${r.time||''}</td><td>${esc(r.type||'Medicamento')}</td><td>${esc(r.product)}</td><td>${esc(r.quantity)} ${esc(r.unit||'')}</td><td>${r.repeatDays? r.repeatDays+' días':'—'}</td><td>${nxt||'—'}</td><td>${esc(r.appliedBy||'')}</td><td><span class="pill ${st.cls}">${st.text}</span></td></tr>`}).join(''),['Aplicación','Hora','Tipo','Producto','Cantidad','Reaplicar','Próxima','Aplicó','Estado']);}
  if(tab==='partosP'){let rs=state.births.filter(x=>x.animalId===a.id);html='<h3>Partos</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.due}</td><td>${esc(r.note||'')}</td></tr>`).join(''),['Fecha probable','Observación']);}
  if(tab==='lecheP'){let rs=state.milk.filter(x=>x.animalId===a.id).sort((x,y)=>y.date.localeCompare(x.date));html='<h3>Lechería</h3>'+tableOrEmpty(rs.map(r=>`<tr><td>${r.date}</td><td>${r.shift}</td><td>${r.liters} L</td></tr>`).join(''),['Fecha','Turno','Litros']);}
  document.getElementById('profileContent').innerHTML=html;
@@ -186,12 +205,50 @@ function renderMilk(){
 function renderPesajes(){let rs=[...state.weighings].sort((a,b)=>b.date.localeCompare(a.date));document.getElementById('weighRows').innerHTML=rs.map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.id}</td><td>${a.name}</td><td>${a.lot}</td><td>${r.weight} kg</td><td>${a.gdp.toFixed(2)} kg/día</td></tr>`:''}).join('')||'<tr><td colspan="6" class="empty">Sin pesajes registrados.</td></tr>'}
 function renderAlerts(){
  const med=state.medications, births=state.births;
- document.getElementById('medAlerts').innerHTML=med.length?med.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">💊 <b>${a.name}</b> · ${r.date} · ${esc(r.product)}</div>`:''}).join(''):'<div class="empty">Sin medicamentos registrados.</div>';
- document.getElementById('birthAlerts').innerHTML=births.length?births.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">🐄 <b>${a.name}</b> · parto probable ${r.due}</div>`:''}).join(''):'<div class="empty">Sin alertas de parto.</div>';
+ const healthAlerts=med.map(r=>{let a=animal(r.animalId), nxt=nextDate(r.date,r.repeatDays);return a&&nxt?{a,r,nxt,st:healthStatus(nxt)}:null}).filter(Boolean).sort((x,y)=>x.nxt.localeCompare(y.nxt));
+ document.getElementById('medAlerts').innerHTML=healthAlerts.length?healthAlerts.map(x=>`<div class="notice ${x.st.cls==='danger'?'danger':''}">💊 <b>${esc(x.a.name)}</b> · ${esc(x.r.type)}: ${esc(x.r.product)} · ${esc(x.r.quantity)} ${esc(x.r.unit)}<br><small>Aplicó: ${esc(x.r.appliedBy)} · ${x.r.time||''} · Próxima: <b>${x.nxt}</b> · <span class="pill ${x.st.cls}">${x.st.text}</span></small></div>`).join(''):'<div class="empty">Sin alertas de medicamentos, vacunas o desparasitaciones.</div>';
+ document.getElementById('birthAlerts').innerHTML=births.length?births.map(r=>{let a=animal(r.animalId);return a?`<div class="notice">🐄 <b>${esc(a.name)}</b> · parto probable ${r.due}</div>`:''}).join(''):'<div class="empty">Sin alertas de parto.</div>';
 }
 function renderLots(){const map={};state.animals.forEach(a=>{map[a.lot]??=[];map[a.lot].push(a)});document.getElementById('lotCards').innerHTML=Object.entries(map).map(([lot,as])=>{let w=as.reduce((s,a)=>s+a.weight,0)/as.length,g=as.reduce((s,a)=>s+a.gdp,0)/as.length;return `<div class="card"><div class="label">${lot}</div><div class="value">${g.toFixed(2)} <small style="font-size:12px;color:#6d786f">kg/día</small></div><div class="label">${as.length} animales · ${w.toFixed(0)} kg promedio</div></div>`}).join('')}
-function renderDashboard(){const n=state.animals.length,w=n?state.animals.reduce((s,a)=>s+a.weight,0)/n:0,g=n?state.animals.reduce((s,a)=>s+a.gdp,0)/n:0,m=state.milk.filter(x=>x.date===today()).reduce((s,x)=>s+x.liters,0),c=state.animals.filter(a=>a.dairy).length;document.getElementById('kAnimals').textContent=n;document.getElementById('kWeight').textContent=w.toFixed(0)+' kg';document.getElementById('kGdp').textContent=g.toFixed(2).replace('.',',')+' kg/día';document.getElementById('kMilk').textContent=m.toFixed(1)+' L';document.getElementById('kMilkSub').textContent=c+' vacas lecheras';let good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0,mid=n?Math.round(state.animals.filter(a=>a.gdp>=.62&&a.gdp<.75).length/n*100):0,low=100-good-mid;document.getElementById('dashboardBars').innerHTML=`<div class="row"><div class="rowhead"><span>🟢 Sobre objetivo</span><b>${good}%</b></div><div class="barbg"><div class="bar" style="width:${good}%"></div></div></div><div class="row"><div class="rowhead"><span>🟡 En seguimiento</span><b>${mid}%</b></div><div class="barbg"><div class="bar" style="width:${mid}%"></div></div></div><div class="row"><div class="rowhead"><span>🔴 Requiere revisión</span><b>${low}%</b></div><div class="barbg"><div class="bar" style="width:${low}%"></div></div></div>`;document.getElementById('dashboardAlerts').innerHTML=`<div class="notice">💊 ${state.medications.length} registros de medicamentos</div><div class="notice">🐄 ${state.births.length} registros de parto</div>`;document.getElementById('recentRows').innerHTML=state.weighings.slice(-8).reverse().map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.name}</td><td>Pesaje</td><td>${r.weight} kg</td></tr>`:''}).join('')||'<tr><td colspan="4" class="empty">Aún no hay movimientos.</td></tr>'}
+function renderDashboard(){const n=state.animals.length,w=n?state.animals.reduce((s,a)=>s+a.weight,0)/n:0,g=n?state.animals.reduce((s,a)=>s+a.gdp,0)/n:0,m=state.milk.filter(x=>x.date===today()).reduce((s,x)=>s+x.liters,0),c=state.animals.filter(a=>a.dairy).length;document.getElementById('kAnimals').textContent=n;document.getElementById('kWeight').textContent=w.toFixed(0)+' kg';document.getElementById('kGdp').textContent=g.toFixed(2).replace('.',',')+' kg/día';document.getElementById('kMilk').textContent=m.toFixed(1)+' L';document.getElementById('kMilkSub').textContent=c+' vacas lecheras';let good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0,mid=n?Math.round(state.animals.filter(a=>a.gdp>=.62&&a.gdp<.75).length/n*100):0,low=100-good-mid;document.getElementById('dashboardBars').innerHTML=`<div class="row"><div class="rowhead"><span>🟢 Sobre objetivo</span><b>${good}%</b></div><div class="barbg"><div class="bar" style="width:${good}%"></div></div></div><div class="row"><div class="rowhead"><span>🟡 En seguimiento</span><b>${mid}%</b></div><div class="barbg"><div class="bar" style="width:${mid}%"></div></div></div><div class="row"><div class="rowhead"><span>🔴 Requiere revisión</span><b>${low}%</b></div><div class="barbg"><div class="bar" style="width:${low}%"></div></div></div>`;const dueHealth=state.medications.filter(r=>{const n=nextDate(r.date,r.repeatDays);return n&&healthStatus(n).text!=='Programada'}).length;document.getElementById('dashboardAlerts').innerHTML=`<div class="notice">💊 ${state.medications.length} registros sanitarios · ${dueHealth} requieren atención</div><div class="notice">🐄 ${state.births.length} registros de parto</div>`;document.getElementById('recentRows').innerHTML=state.weighings.slice(-8).reverse().map(r=>{let a=animal(r.animalId);return a?`<tr><td>${r.date}</td><td>${a.name}</td><td>Pesaje</td><td>${r.weight} kg</td></tr>`:''}).join('')||'<tr><td colspan="4" class="empty">Aún no hay movimientos.</td></tr>'}
 function renderAnalysis(){let n=state.animals.length,total=state.animals.reduce((s,a)=>s+a.weight,0),good=n?Math.round(state.animals.filter(a=>a.gdp>=.75).length/n*100):0;document.getElementById('aGood').textContent=good+'%';document.getElementById('aTotalWeight').textContent=total.toFixed(0)+' kg';document.getElementById('aCows').textContent=state.animals.filter(a=>a.dairy).length;document.getElementById('aAlerts').textContent=state.medications.length+state.births.length}
+
+function nextDate(date,days){
+ if(!date || !days || +days<=0)return '';
+ const d=new Date(date+'T00:00:00'); d.setDate(d.getDate()+Number(days)); return d.toISOString().slice(0,10);
+}
+function healthStatus(date){
+ if(!date)return {cls:'ok',text:'Sin repetición'};
+ const t=new Date(today()+'T00:00:00'), d=new Date(date+'T00:00:00'), diff=Math.ceil((d-t)/86400000);
+ if(diff<0)return {cls:'danger',text:'Vencida'};
+ if(diff<=3)return {cls:'warn',text:'En '+diff+' día'+(diff===1?'':'s')};
+ return {cls:'ok',text:'Programada'};
+}
+function openHealthModal(id){
+ document.getElementById('hAnimal').innerHTML=state.animals.map(a=>`<option value="${a.id}" ${a.id===id?'selected':''}>${a.name} · ${a.id}</option>`).join('');
+ document.getElementById('hDate').value=today();
+ document.getElementById('hTime').value=new Date().toTimeString().slice(0,5);
+ document.getElementById('hProduct').value='';document.getElementById('hQuantity').value='';
+ document.getElementById('hRepeat').value='';document.getElementById('hAppliedBy').value='';document.getElementById('hNote').value='';
+ document.getElementById('healthModal').classList.add('show');
+}
+function saveHealth(e){
+ e.preventDefault();
+ state.medications.push({
+  animalId:document.getElementById('hAnimal').value,
+  type:document.getElementById('hType').value,
+  product:document.getElementById('hProduct').value.trim(),
+  quantity:+document.getElementById('hQuantity').value,
+  unit:document.getElementById('hUnit').value,
+  date:document.getElementById('hDate').value,
+  time:document.getElementById('hTime').value,
+  appliedBy:document.getElementById('hAppliedBy').value.trim(),
+  repeatDays:+document.getElementById('hRepeat').value||0,
+  note:document.getElementById('hNote').value.trim()
+ });
+ save();closeModal('healthModal');renderAll();if(currentId)renderProfileContent('medP');
+}
+
 function renderAll(){renderAnimals();renderLots();renderPesajes();renderMilk();renderAlerts();renderDashboard();renderAnalysis();if(currentId&&document.getElementById('perfil').classList.contains('active'))renderProfile()}
 renderAll();
 </script>
