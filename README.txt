@@ -1,19 +1,14 @@
-GANADO ANALYTICS — V1
-======================
+GANADO ANALYTICS V4
 
-Proyecto estático listo para Vercel.
+Novedades:
+- Los animales tienen ID y nombre.
+- Al cambiar el nombre, los registros históricos siguen ligados al mismo animal y muestran automáticamente el nombre nuevo.
+- Se puede eliminar un animal y se eliminan sus registros asociados.
+- Dashboard automático.
+- Lechería y control de litros.
+- Historial de pesajes.
+- Panel de alertas.
+- Datos guardados en localStorage del navegador.
 
-CONTENIDO
-- index.html: aplicación completa
-- logo.jpg: logo utilizado
-- README.txt: estas instrucciones
-
-PUBLICAR EN VERCEL
-1. Entra a Vercel y crea un nuevo proyecto.
-2. Usa la opción de importar/subir el proyecto.
-3. Sube esta carpeta o el ZIP.
-4. No necesitas configurar Build Command.
-5. Vercel detectará index.html y publicará el sitio.
-
-NOTA
-Esta V1 guarda los animales en localStorage del navegador. Los datos son de demostración y no se sincronizan entre usuarios/dispositivos.
+PUBLICACIÓN:
+Sube index.html al repositorio conectado a Vercel.
