@@ -22,7 +22,7 @@ button,input,select{font:inherit}.app{min-height:100vh}.side{position:fixed;left
     <button data-section="lotes">▤ &nbsp; Lotes</button>
     <button data-section="pesajes">⚖ &nbsp; Pesajes</button>
     <button data-section="analisis">◒ &nbsp; Análisis</button>
-    <button data-section="alertas">🔔 &nbsp; Alertas</button>
+    <button data-section="lecheria">🥛 &nbsp; Lechería</button>
   </nav>
 </aside>
 <main class="main">
@@ -33,22 +33,20 @@ button,input,select{font:inherit}.app{min-height:100vh}.side{position:fixed;left
 <div class="card"><div class="label">Peso promedio</div><div class="value" id="dashWeight">0 kg</div><div class="trend">Calculado automáticamente</div></div>
 <div class="card"><div class="label">GDP promedio</div><div class="value" id="dashGdp">0,00 kg/día</div><div class="trend">Rendimiento actual</div></div>
 <div class="card"><div class="label">Margen estimado</div><div class="value" id="dashMargin">$0 M</div><div class="trend">Estimación del inventario</div></div>
+<div class="card"><div class="label">Lechería · litros hoy</div><div class="value" id="dashMilk">0 L</div><div class="trend" id="dashMilkMeta">0 vacas · 0 pendientes</div></div>
 </div>
 <div class="grid">
 <div class="panel"><h3>Distribución de GDP</h3><div id="dashStatus"></div></div>
 <div class="panel"><h3>GDP por lote</h3><div id="dashLots"></div></div>
 </div>
-<div class="panel" style="margin-top:15px;border-left:4px solid #a96c18">
-<h3>Alertas prioritarias</h3>
-<div id="dashAlerts"></div>
-</div>
+<div class="panel" style="margin-top:15px"><h3>Lechería · control de ordeño</h3><div class="cards" style="grid-template-columns:repeat(3,1fr);margin-bottom:15px"><div class="mini"><span class="label">Vacas para ordeñar</span><b id="dashMilkCows">0</b></div><div class="mini"><span class="label">Litros registrados hoy</span><b id="dashMilkLiters">0 L</b></div><div class="mini"><span class="label">Ordeños pendientes</span><b id="dashMilkPending">0</b></div></div><div class="tablewrap"><table class="table"><thead><tr><th>Animal</th><th>Turno</th><th>Meta</th><th>Litros hoy</th><th>Estado</th></tr></thead><tbody id="dashMilkRows"></tbody></table></div></div>
 <div class="panel" style="margin-top:15px"><h3>Animales de bajo rendimiento</h3><div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Lote</th><th>Peso</th><th>GDP</th><th>Estado</th></tr></thead><tbody id="reviewRows"></tbody></table></div></div>
 </section>
 
 <section id="animales" class="section">
 <div class="top"><div><h1>Animales</h1><p>Agrega y modifica el inventario</p></div><button class="primary" onclick="openAnimalForm()">+ Nuevo animal</button></div>
 <div class="panel"><div class="filters"><input id="search" placeholder="Buscar ID, raza o lote..." oninput="filterAnimals()"><select id="statusFilter" onchange="filterAnimals()"><option value="">Todos los estados</option><option value="good">Bueno</option><option value="mid">Medio</option><option value="low">Bajo</option></select></div>
-<div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Raza</th><th>Lote</th><th>Edad</th><th>Peso</th><th>GDP</th><th>Estado</th><th></th></tr></thead><tbody id="animalRows"></tbody></table></div></div>
+<div class="tablewrap"><table class="table"><thead><tr><th>ID</th><th>Raza</th><th>Lote</th><th>Edad</th><th>Peso</th><th>GDP</th><th>Lechería</th><th>Estado</th><th></th></tr></thead><tbody id="animalRows"></tbody></table></div></div>
 </section>
 
 <section id="lotes" class="section"><div class="top"><div><h1>Lotes</h1><p>Indicadores calculados desde los animales</p></div></div><div class="cards" id="lotCards"></div></section>
@@ -57,30 +55,14 @@ button,input,select{font:inherit}.app{min-height:100vh}.side{position:fixed;left
 
 <section id="analisis" class="section"><div class="top"><div><h1>Análisis</h1><p>Resumen de rendimiento</p></div></div><div class="cards" id="analysisCards"></div></section>
 
-
-<section id="alertas" class="section">
-<div class="top"><div><h1>Alertas</h1><p>Seguimiento de medicamentos y partos</p></div></div>
-<div class="cards">
-<div class="card"><div class="label">Medicamentos pendientes</div><div class="value" id="medAlertCount">0</div><div class="trend">Dosis o tratamientos próximos</div></div>
-<div class="card"><div class="label">Partos próximos</div><div class="value" id="birthAlertCount">0</div><div class="trend">Ventana de 14 días</div></div>
-<div class="card"><div class="label">Alertas hoy</div><div class="value" id="todayAlertCount">0</div><div class="trend">Requieren atención</div></div>
-</div>
-<div class="grid">
-<div class="panel"><h3>💊 Medicamentos</h3><div id="medAlerts"></div></div>
-<div class="panel"><h3>🐄 Partos próximos</h3><div id="birthAlerts"></div></div>
-</div>
-<div class="panel" style="margin-top:15px">
-<h3>Agregar / editar seguimiento</h3>
-<div class="formgrid">
-<div class="field"><label>Animal</label><select id="alertAnimal"></select></div>
-<div class="field"><label>Tipo</label><select id="alertType"><option value="med">Medicamento</option><option value="birth">Parto</option></select></div>
-<div class="field"><label>Fecha</label><input id="alertDate" type="date"></div>
-<div class="field"><label>Detalle</label><input id="alertDetail" placeholder="Ej. Vacuna / fecha probable de parto"></div>
-</div>
-<div class="actions"><button class="primary" onclick="saveAlert()">Guardar alerta</button></div>
-</div>
+<section id="lecheria" class="section">
+<div class="top"><div><h1>Lechería</h1><p>Control diario de ordeño y litros por vaca</p></div><span class="badge" id="milkDateBadge"></span></div>
+<div class="cards"><div class="card"><div class="label">Vacas para ordeñar hoy</div><div class="value" id="milkCowCount">0</div><div class="trend">Animales marcados como lecheros</div></div><div class="card"><div class="label">Litros registrados</div><div class="value" id="milkTotal">0 L</div><div class="trend">Acumulado del día</div></div><div class="card"><div class="label">Promedio por vaca</div><div class="value" id="milkAvg">0 L</div><div class="trend">Según registros de hoy</div></div><div class="card"><div class="label">Ordeños pendientes</div><div class="value" id="milkPending">0</div><div class="trend">Faltan por registrar</div></div></div>
+<div class="panel" style="margin-top:15px"><div class="top" style="margin-bottom:10px"><div><h3 style="margin:0">Control de ordeño de hoy</h3><p style="margin:4px 0;color:var(--muted);font-size:13px">Registra los litros producidos por cada vaca en mañana y tarde.</p></div><button class="secondary" onclick="resetMilkToday()">Reiniciar registros del día</button></div><div class="tablewrap"><table class="table"><thead><tr><th>Animal</th><th>Lote</th><th>Turno</th><th>Meta L/día</th><th>Litros registrados</th><th>Estado</th><th></th></tr></thead><tbody id="milkRows"></tbody></table></div></div>
+<div class="panel" style="margin-top:15px"><h3>Resumen por lote</h3><div id="milkLots"></div></div>
 </section>
-<section id="perfil" class="section"><div class="top"><div><button class="back" onclick="go('animales')">← Volver</button><h1 id="profileTitle" style="margin-top:14px"></h1><p id="profileSub"></p></div><button class="primary" onclick="editCurrentAnimal()">Editar animal</button></div><div class="profile"><div class="mini"><span class="label">Peso actual</span><b id="profileWeight"></b></div><div class="mini"><span class="label">Ganancia estimada</span><b id="profileGain"></b></div><div class="mini"><span class="label">GDP</span><b id="profileGdp"></b></div><div class="mini"><span class="label">Valor estimado</span><b id="profileCost"></b></div></div><div class="panel"><h3>Evolución de peso</h3><div class="chart"><svg viewBox="0 0 720 230" preserveAspectRatio="none"><polyline fill="none" stroke="#2f6b45" stroke-width="4" points="40,195 170,170 300,142 430,105 560,68 690,40"/><line x1="35" y1="200" x2="700" y2="200" stroke="#e8ece8"/></svg></div></div></section>
+
+<section id="perfil" class="section"><div class="top"><div><button class="back" onclick="go('animales')">← Volver</button><h1 id="profileTitle" style="margin-top:14px"></h1><p id="profileSub"></p></div><button class="primary" onclick="editCurrentAnimal()">Editar animal</button></div><div class="profile"><div class="mini"><span class="label">Peso actual</span><b id="profileWeight"></b></div><div class="mini"><span class="label">Ganancia estimada</span><b id="profileGain"></b></div><div class="mini"><span class="label">GDP</span><b id="profileGdp"></b></div><div class="mini"><span class="label">Valor estimado</span><b id="profileCost"></b></div><div class="mini"><span class="label">Lechería</span><b id="profileDairy"></b></div></div><div class="panel"><h3>Evolución de peso</h3><div class="chart"><svg viewBox="0 0 720 230" preserveAspectRatio="none"><polyline fill="none" stroke="#2f6b45" stroke-width="4" points="40,195 170,170 300,142 430,105 560,68 690,40"/><line x1="35" y1="200" x2="700" y2="200" stroke="#e8ece8"/></svg></div></div></section>
 </main></div>
 
 <div id="animalModal" class="modal"><div class="modalbox">
@@ -92,12 +74,19 @@ button,input,select{font:inherit}.app{min-height:100vh}.side{position:fixed;left
 <div class="field"><label>Edad (meses)</label><input id="fAge" type="number" min="0"></div>
 <div class="field"><label>Peso actual (kg)</label><input id="fWeight" type="number" min="0"></div>
 <div class="field"><label>GDP (kg/día)</label><input id="fGdp" type="number" min="0" step=".01"></div>
+<div class="field"><label>Producción meta (L/día)</label><input id="fMilkTarget" type="number" min="0" step=".1" value="10"></div>
+<div class="field" style="display:flex;align-items:center;gap:10px;padding-top:22px"><input id="fDairy" type="checkbox" style="width:18px;height:18px"><label for="fDairy" style="margin:0">Es vaca lechera</label></div>
 </div>
 <div class="actions"><button class="secondary" onclick="closeAnimalForm()">Cancelar</button><button class="primary" onclick="saveAnimal()">Guardar cambios</button></div>
 </div></div>
 
 <script>
-const key="ganadoAnalyticsAnimalsV1";
+const key="ganadoAnalyticsAnimalsV2";
+const milkKey="ganadoAnalyticsMilkV1";
+const todayKey=()=>new Date().toISOString().slice(0,10);
+let milkLogs=JSON.parse(localStorage.getItem(milkKey)||"{}");
+function milkDay(){const d=todayKey();if(!milkLogs[d])milkLogs[d]={};return milkLogs[d]}
+function persistMilk(){localStorage.setItem(milkKey,JSON.stringify(milkLogs))}
 const breeds=["Brahman","Angus","Simmental","Brangus"];
 let currentAnimalId=null;
 let animals=JSON.parse(localStorage.getItem(key)||"null");
@@ -105,80 +94,15 @@ if(!animals){
   animals=[];
   for(let i=1;i<=48;i++){
     const g=[.91,.84,.78,.72,.64,.58][i%6], lot=((i-1)%8)+1;
-    animals.push({id:"GAN-"+String(i).padStart(4,"0"),breed:breeds[i%4],lot:"Lote "+String(lot).padStart(2,"0"),age:14+(i%18),weight:330+(i*7)%130,gdp:g});
+    animals.push({id:"GAN-"+String(i).padStart(4,"0"),breed:breeds[i%4],lot:"Lote "+String(lot).padStart(2,"0"),age:14+(i%18),weight:330+(i*7)%130,gdp:g,isDairy:i<=12,milkTarget:10+(i%5)});
   }
 }
+animals=animals.map(a=>({...a,isDairy:!!a.isDairy,milkTarget:Number(a.milkTarget)||10}));
 const status=a=>a.gdp>=.75?"good":a.gdp>=.62?"mid":"low";
 function persist(){localStorage.setItem(key,JSON.stringify(animals))}
 function fmt(n,d=2){return Number(n).toFixed(d).replace(".",",")}
-
-const alertsKey="ganadoAnalyticsAlertsV1";
-let alerts=JSON.parse(localStorage.getItem(alertsKey)||"null");
-if(!alerts){
-  const today=new Date();
-  const iso=d=>{const x=new Date(d);return x.toISOString().slice(0,10)};
-  alerts=animals.slice(0,8).map((a,i)=>({
-    id:"ALT-"+String(i+1).padStart(3,"0"),
-    animalId:a.id,
-    type:i%2===0?"med":"birth",
-    date:iso(new Date(today.getTime()+((i%2===0?i-3:i+2)*86400000))),
-    detail:i%2===0?"Tratamiento veterinario":"Fecha probable de parto"
-  }));
-}
-function persistAlerts(){localStorage.setItem(alertsKey,JSON.stringify(alerts))}
-function daysUntil(date){
-  const a=new Date(); a.setHours(0,0,0,0);
-  const b=new Date(date+"T00:00:00"); b.setHours(0,0,0,0);
-  return Math.round((b-a)/86400000);
-}
-function alertLabel(x){
-  const d=daysUntil(x.date);
-  if(d<0) return "Vencida";
-  if(d===0) return "Hoy";
-  if(d===1) return "Mañana";
-  return "En "+d+" días";
-}
-function alertTone(x){
-  const d=daysUntil(x.date);
-  return d<=2?"low":d<=7?"mid":"good";
-}
-function renderAlerts(){
-  const med=alerts.filter(x=>x.type==="med").sort((a,b)=>a.date.localeCompare(b.date));
-  const birth=alerts.filter(x=>x.type==="birth").sort((a,b)=>a.date.localeCompare(b.date));
-  const urgent=alerts.filter(x=>daysUntil(x.date)<=2).length;
-  document.getElementById("medAlertCount").textContent=med.filter(x=>daysUntil(x.date)<=7).length;
-  document.getElementById("birthAlertCount").textContent=birth.filter(x=>daysUntil(x.date)<=14).length;
-  document.getElementById("todayAlertCount").textContent=urgent;
-  const render=(list)=>list.length?list.map(x=>{
-    const a=animals.find(y=>y.id===x.animalId);
-    return `<div class="row" style="padding:10px 0;border-bottom:1px solid var(--line)">
-      <div class="rowhead"><span><b>${a?a.id:x.animalId}</b> · ${x.detail}</span><span class="pill ${alertTone(x)}">${alertLabel(x)}</span></div>
-      <div class="label">${a?a.lot:""} · ${x.date}</div>
-    </div>`;
-  }).join(""):'<p class="label">Sin alertas registradas.</p>';
-  document.getElementById("medAlerts").innerHTML=render(med);
-  document.getElementById("birthAlerts").innerHTML=render(birth);
-  document.getElementById("dashAlerts").innerHTML=alerts.filter(x=>daysUntil(x.date)<=7).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,8).map(x=>{
-    const a=animals.find(y=>y.id===x.animalId);
-    const icon=x.type==="med"?"💊":"🐄";
-    return `<div class="row"><div class="rowhead"><span>${icon} <b>${a?a.id:x.animalId}</b> · ${x.detail}</span><span class="pill ${alertTone(x)}">${alertLabel(x)}</span></div><div class="label">${x.date}</div></div>`;
-  }).join("") || '<p class="label">No hay alertas para los próximos 7 días.</p>';
-  const sel=document.getElementById("alertAnimal");
-  if(sel) sel.innerHTML=animals.map(a=>`<option value="${a.id}">${a.id} · ${a.lot}</option>`).join("");
-}
-function saveAlert(){
-  const animalId=document.getElementById("alertAnimal").value;
-  const type=document.getElementById("alertType").value;
-  const date=document.getElementById("alertDate").value;
-  const detail=document.getElementById("alertDetail").value.trim() || (type==="med"?"Tratamiento veterinario":"Fecha probable de parto");
-  if(!animalId||!date){alert("Selecciona el animal y la fecha.");return}
-  alerts.push({id:"ALT-"+Date.now(),animalId,type,date,detail});
-  persistAlerts();renderAlerts();
-  document.getElementById("alertDetail").value="";
-}
-
 function renderAnimals(){
- document.getElementById("animalRows").innerHTML=animals.map(a=>`<tr class="animal" data-status="${status(a)}" onclick="showAnimal('${a.id}')"><td>${a.id}</td><td>${a.breed}</td><td>${a.lot}</td><td>${a.age} meses</td><td>${a.weight} kg</td><td>${fmt(a.gdp)}</td><td><span class="pill ${status(a)}">${status(a)==="good"?"Bueno":status(a)==="mid"?"Medio":"Bajo"}</span></td><td><button class="secondary" onclick="event.stopPropagation();editAnimal('${a.id}')">Editar</button></td></tr>`).join("");
+ document.getElementById("animalRows").innerHTML=animals.map(a=>`<tr class="animal" data-status="${status(a)}" onclick="showAnimal('${a.id}')"><td>${a.id}</td><td>${a.breed}</td><td>${a.lot}</td><td>${a.age} meses</td><td>${a.weight} kg</td><td>${fmt(a.gdp)}</td><td>${a.isDairy?"🥛 Sí":"—"}</td><td><span class="pill ${status(a)}">${status(a)==="good"?"Bueno":status(a)==="mid"?"Medio":"Bajo"}</span></td><td><button class="secondary" onclick="event.stopPropagation();editAnimal('${a.id}')">Editar</button></td></tr>`).join("");
 }
 function filterAnimals(){
  const q=document.getElementById("search").value.toLowerCase(), s=document.getElementById("statusFilter").value;
@@ -197,7 +121,7 @@ function updateDashboard(){
  const lots=Object.entries(groups).sort((a,b)=>b[1].g/b[1].n-a[1].g/b[1].n).slice(0,6);
  document.getElementById("dashLots").innerHTML=lots.map(([lot,x])=>{let g=x.g/x.n;return `<div class="row"><div class="rowhead"><span>${lot} · ${x.n} animales</span><b>${fmt(g)}</b></div><div class="barbg"><div class="bar" style="width:${Math.min(g/1.1*100,100)}%"></div></div></div>`}).join("");
  document.getElementById("reviewRows").innerHTML=animals.filter(a=>status(a)==="low").sort((a,b)=>a.gdp-b.gdp).slice(0,8).map(a=>`<tr class="animal" onclick="showAnimal('${a.id}')"><td>${a.id}</td><td>${a.lot}</td><td>${a.weight} kg</td><td>${fmt(a.gdp)}</td><td><span class="pill low">Bajo</span></td></tr>`).join("")||`<tr><td colspan="5">No hay animales en revisión.</td></tr>`;
- updateLotes(); updateAnalysis();
+ updateLotes(); updateAnalysis(); updateMilk();
 }
 function updateLotes(){
  const groups={};animals.forEach(a=>{groups[a.lot]??={n:0,w:0,g:0};groups[a.lot].n++;groups[a.lot].w+=a.weight;groups[a.lot].g+=a.gdp});
@@ -222,24 +146,45 @@ function showAnimal(id){
  document.getElementById("profileGain").textContent=Math.round(a.gdp*150)+" kg";
  document.getElementById("profileGdp").textContent=fmt(a.gdp)+" kg/día";
  document.getElementById("profileCost").textContent="$"+fmt(a.weight*0.0128,2)+" M";
+ document.getElementById("profileDairy").textContent=a.isDairy?"Sí · "+fmt(a.milkTarget||10,1)+" L/día":"No";
 }
 function openAnimalForm(id=null){
  currentAnimalId=id;document.getElementById("animalModal").classList.add("open");document.getElementById("modalTitle").textContent=id?"Editar animal":"Nuevo animal";
- const a=id?animals.find(x=>x.id===id):{id:"GAN-"+String(animals.length+1).padStart(4,"0"),breed:"Brahman",lot:"Lote 01",age:18,weight:380,gdp:.75};
- ["fId","fBreed","fLot","fAge","fWeight","fGdp"].forEach((k,i)=>document.getElementById(k).value=[a.id,a.breed,a.lot,a.age,a.weight,a.gdp][i]);
+ const a=id?animals.find(x=>x.id===id):{id:"GAN-"+String(animals.length+1).padStart(4,"0"),breed:"Brahman",lot:"Lote 01",age:18,weight:380,gdp:.75,isDairy:false,milkTarget:10};
+ ["fId","fBreed","fLot","fAge","fWeight","fGdp","fMilkTarget"].forEach((k,i)=>document.getElementById(k).value=[a.id,a.breed,a.lot,a.age,a.weight,a.gdp,a.milkTarget||10][i]);
+ document.getElementById("fDairy").checked=!!a.isDairy;
 }
 function editAnimal(id){openAnimalForm(id)}
 function editCurrentAnimal(){if(currentAnimalId)openAnimalForm(currentAnimalId)}
 function closeAnimalForm(){document.getElementById("animalModal").classList.remove("open")}
 function saveAnimal(){
  const id=document.getElementById("fId").value.trim(); if(!id){alert("El ID es obligatorio");return}
- const a={id,breed:document.getElementById("fBreed").value,lot:document.getElementById("fLot").value.trim()||"Lote 01",age:Number(document.getElementById("fAge").value)||0,weight:Number(document.getElementById("fWeight").value)||0,gdp:Number(document.getElementById("fGdp").value)||0};
+ const a={id,breed:document.getElementById("fBreed").value,lot:document.getElementById("fLot").value.trim()||"Lote 01",age:Number(document.getElementById("fAge").value)||0,weight:Number(document.getElementById("fWeight").value)||0,gdp:Number(document.getElementById("fGdp").value)||0,isDairy:document.getElementById("fDairy").checked,milkTarget:Number(document.getElementById("fMilkTarget").value)||10};
  const i=animals.findIndex(x=>x.id===currentAnimalId); if(i>=0)animals[i]=a;else animals.unshift(a);
- persist();renderAnimals();updateDashboard();renderAlerts();closeAnimalForm();showAnimal(id);
+ persist();renderAnimals();updateDashboard();closeAnimalForm();showAnimal(id);
 }
+function updateMilk(){
+ const day=milkDay(), dairy=animals.filter(a=>a.isDairy), rows=dairy.map(a=>({a,log:day[a.id]||{morning:null,evening:null}}));
+ const liters=rows.reduce((s,x)=>s+(Number(x.log.morning)||0)+(Number(x.log.evening)||0),0);
+ const pending=rows.reduce((s,x)=>s+(x.log.morning==null?1:0)+(x.log.evening==null?1:0),0);
+ const avg=dairy.length?liters/dairy.length:0;
+ ["milkCowCount","dashMilkCows"].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=dairy.length});
+ ["milkTotal","dashMilk","dashMilkLiters"].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=fmt(liters,1)+" L"});
+ ["milkPending","dashMilkPending"].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pending});
+ const av=document.getElementById("milkAvg");if(av)av.textContent=fmt(avg,1)+" L";
+ const meta=document.getElementById("dashMilkMeta");if(meta)meta.textContent=`${dairy.length} vacas · ${pending} pendientes`;
+ const badge=document.getElementById("milkDateBadge");if(badge)badge.textContent="Hoy · "+new Date().toLocaleDateString("es-CO");
+ const table=document.getElementById("milkRows");
+ if(table)table.innerHTML=rows.map(({a,log})=>{const total=(Number(log.morning)||0)+(Number(log.evening)||0),target=Number(a.milkTarget)||10;const st=total>=target?["good","Completo"]:total>0?["mid","Parcial"]:["low","Pendiente"];return `<tr><td><b>${a.id}</b></td><td>${a.lot}</td><td>🌅 Mañana / 🌇 Tarde</td><td>${fmt(target,1)} L</td><td><input type="number" min="0" step="0.1" value="${log.morning??''}" placeholder="mañana" style="width:95px" onchange="setMilk('${a.id}','morning',this.value)"> <input type="number" min="0" step="0.1" value="${log.evening??''}" placeholder="tarde" style="width:95px" onchange="setMilk('${a.id}','evening',this.value)"></td><td><span class="pill ${st[0]}">${st[1]}</span></td><td><button class="secondary" onclick="showAnimal('${a.id}')">Ver</button></td></tr>`}).join("")||`<tr><td colspan="7">No hay vacas marcadas como lecheras. Edita un animal y activa “Es vaca lechera”.</td></tr>`;
+ const groups={};rows.forEach(({a,log})=>{groups[a.lot]??={n:0,l:0};groups[a.lot].n++;groups[a.lot].l+=(Number(log.morning)||0)+(Number(log.evening)||0)});
+ const lots=document.getElementById("milkLots");if(lots)lots.innerHTML=Object.entries(groups).map(([lot,x])=>`<div class="row"><div class="rowhead"><span>${lot} · ${x.n} vacas</span><b>${fmt(x.l,1)} L</b></div><div class="barbg"><div class="bar" style="width:${Math.min(x.l/(x.n*20)*100,100)}%"></div></div></div>`).join("")||"<p style='color:var(--muted)'>Sin registros.</p>";
+ const dash=document.getElementById("dashMilkRows");if(dash)dash.innerHTML=rows.slice(0,8).map(({a,log})=>{const total=(Number(log.morning)||0)+(Number(log.evening)||0),target=Number(a.milkTarget)||10;const st=total>=target?["good","Completo"]:total>0?["mid","Parcial"]:["low","Pendiente"];return `<tr><td>${a.id}</td><td>Mañana / tarde</td><td>${fmt(target,1)} L</td><td>${fmt(total,1)} L</td><td><span class="pill ${st[0]}">${st[1]}</span></td></tr>`}).join("")||`<tr><td colspan="5">No hay vacas lecheras configuradas.</td></tr>`;
+}
+function setMilk(id,turn,value){const day=milkDay();day[id]??={morning:null,evening:null};day[id][turn]=value===""?null:Number(value);persistMilk();updateMilk();}
+function resetMilkToday(){if(confirm("¿Reiniciar los litros registrados de hoy?")){delete milkLogs[todayKey()];persistMilk();updateMilk();}}
 function go(id){document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
 document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>{go(b.dataset.section);document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active")});
 document.getElementById("weighRows").innerHTML=Array.from({length:12},(_,i)=>{let a=animals[i];return `<tr><td>${String(22-i).padStart(2,"0")}/09/2026</td><td>${a.id}</td><td>${a.lot}</td><td>${a.weight} kg</td><td>+${fmt(a.gdp*30,1)} kg</td></tr>`}).join("");
-renderAnimals();updateDashboard();renderAlerts();
+renderAnimals();updateDashboard();
 </script>
 </body></html>
